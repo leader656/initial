@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace SupplementMall
 {
@@ -46,11 +47,13 @@ namespace SupplementMall
             // 
             // btnStartDevice
             // 
-            this.btnStartDevice.Location = new System.Drawing.Point(219, 384);
+            this.btnStartDevice.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnStartDevice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStartDevice.Image = global::SupplementMall.Properties.Resources.btnstartdevice;
+            this.btnStartDevice.Location = new System.Drawing.Point(185, 383);
             this.btnStartDevice.Name = "btnStartDevice";
-            this.btnStartDevice.Size = new System.Drawing.Size(75, 23);
+            this.btnStartDevice.Size = new System.Drawing.Size(125, 25);
             this.btnStartDevice.TabIndex = 2;
-            this.btnStartDevice.Text = "Start Device";
             this.btnStartDevice.UseVisualStyleBackColor = true;
             this.btnStartDevice.Click += new System.EventHandler(this.btnStartDevice_Click);
             // 
@@ -61,34 +64,41 @@ namespace SupplementMall
             // 
             // btnNext
             // 
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNext.Enabled = false;
-            this.btnNext.Location = new System.Drawing.Point(329, 474);
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Image = global::SupplementMall.Properties.Resources.btnnext;
+            this.btnNext.Location = new System.Drawing.Point(229, 507);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.Size = new System.Drawing.Size(125, 25);
             this.btnNext.TabIndex = 3;
-            this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // lblDeviceStatus
             // 
+            this.lblDeviceStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblDeviceStatus.AutoSize = true;
             this.lblDeviceStatus.Location = new System.Drawing.Point(122, 329);
             this.lblDeviceStatus.Name = "lblDeviceStatus";
             this.lblDeviceStatus.Size = new System.Drawing.Size(83, 13);
             this.lblDeviceStatus.TabIndex = 0;
             this.lblDeviceStatus.Text = "Device Status : ";
+            this.lblDeviceStatus.BackColor = Color.Transparent;
             // 
             // lblDeviceStatusInfo
             // 
+            this.lblDeviceStatusInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblDeviceStatusInfo.AutoSize = true;
             this.lblDeviceStatusInfo.Location = new System.Drawing.Point(205, 329);
             this.lblDeviceStatusInfo.Name = "lblDeviceStatusInfo";
             this.lblDeviceStatusInfo.Size = new System.Drawing.Size(0, 13);
             this.lblDeviceStatusInfo.TabIndex = 1;
+            this.lblDeviceStatusInfo.BackColor = Color.Transparent;
             // 
             // lblLogOut
             // 
+            this.lblLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLogOut.AutoSize = true;
             this.lblLogOut.Location = new System.Drawing.Point(442, 9);
             this.lblLogOut.Name = "lblLogOut";
@@ -97,27 +107,33 @@ namespace SupplementMall
             this.lblLogOut.TabStop = true;
             this.lblLogOut.Text = "Log out";
             this.lblLogOut.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLogOut_LinkClicked);
+            this.lblLogOut.BackColor = Color.Transparent;
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(410, 474);
+            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Image = global::SupplementMall.Properties.Resources.btnback;
+            this.btnBack.Location = new System.Drawing.Point(360, 507);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.Size = new System.Drawing.Size(125, 25);
             this.btnBack.TabIndex = 4;
-            this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // picWaitingAnimation
             // 
-            this.picWaitingAnimation.Location = new System.Drawing.Point(301, 475);
+            this.picWaitingAnimation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picWaitingAnimation.Location = new System.Drawing.Point(201, 508);
             this.picWaitingAnimation.Name = "picWaitingAnimation";
             this.picWaitingAnimation.Size = new System.Drawing.Size(22, 22);
             this.picWaitingAnimation.TabIndex = 7;
             this.picWaitingAnimation.TabStop = false;
+            this.picWaitingAnimation.BackColor = Color.Transparent;
             // 
             // picFingerPrint
             // 
+            this.picFingerPrint.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.picFingerPrint.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.picFingerPrint.Location = new System.Drawing.Point(125, 38);
             this.picFingerPrint.Name = "picFingerPrint";
@@ -125,11 +141,13 @@ namespace SupplementMall
             this.picFingerPrint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picFingerPrint.TabIndex = 6;
             this.picFingerPrint.TabStop = false;
+            this.picFingerPrint.BackColor = Color.Transparent;
             // 
             // FrmAddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::SupplementMall.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(497, 544);
             this.Controls.Add(this.picWaitingAnimation);
             this.Controls.Add(this.btnBack);

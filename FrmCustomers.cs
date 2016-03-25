@@ -121,7 +121,7 @@ namespace SupplementMall
                 var searchFor = cmboSearch.SelectedItem.ToString();
                 var value = txtValue.Text.Trim();
 
-                var taskGetData = Task.Factory.StartNew(() => selectedIndex == 3 ?
+                var taskGetData = Task.Factory.StartNew(() => selectedIndex == 2 ?
                     DataBaseOperations.SerachCustomersTableForDate(dtFrom, dtTo) : 
                     DataBaseOperations.SerachCustomersTableForValue(searchFor, value));
 
@@ -155,7 +155,7 @@ namespace SupplementMall
         {
             try
             {
-                if (cmboSearch.SelectedIndex < 3)
+                if (cmboSearch.SelectedIndex < 2)
                 {
                     dtDateFrom.Visible = false;
                     dtDateTo.Visible = false;

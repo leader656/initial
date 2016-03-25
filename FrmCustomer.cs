@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿
+using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SupplementMall
@@ -32,7 +27,6 @@ namespace SupplementMall
 
                 txtName.Text = (string)drCustomerInfo["Name"];
                 txtPhone.Text = (string)drCustomerInfo["Phone"];
-                txtProduct.Text = (string)drCustomerInfo["Product"];
                 dtDate.Value = (DateTime)drCustomerInfo["Date"];
             }
             catch(Exception ex)
@@ -60,7 +54,6 @@ namespace SupplementMall
             {
                 string name = txtName.Text.Trim();
                 string phone =  txtPhone.Text.Trim();
-                string product = txtProduct.Text.Trim();
                 DateTime date = dtDate.Value;
 
 
@@ -70,19 +63,13 @@ namespace SupplementMall
                     return;
                 }
 
-                if (string.IsNullOrEmpty(product))
-                {
-                    MessageBox.Show("Product field is empty");
-                    return;
-                }
-
                 if (string.IsNullOrEmpty(phone))
                 {
                     MessageBox.Show("Phone field is empty");
                     return;
                 }
 
-                bool success = DataBaseOperations.UpdateCustomer(_id, name, phone, product, date);
+                bool success = DataBaseOperations.UpdateCustomer(_id, name, phone, date);
                 if(success)
                 {
                     MessageBox.Show("Customer updated successfully","Success");

@@ -1,4 +1,6 @@
-﻿namespace SupplementMall
+﻿using System.Drawing;
+
+namespace SupplementMall
 {
     partial class FrmAddCustomerInfo
     {
@@ -30,10 +32,8 @@
         {
             this.lblName = new System.Windows.Forms.Label();
             this.lblPhone = new System.Windows.Forms.Label();
-            this.lblProduct = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
-            this.txtProduct = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblLogOut = new System.Windows.Forms.LinkLabel();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -43,64 +43,61 @@
             // 
             // lblName
             // 
+            this.lblName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(121, 364);
+            this.lblName.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.lblName.Location = new System.Drawing.Point(120, 346);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(34, 13);
+            this.lblName.Size = new System.Drawing.Size(50, 19);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Name";
+            this.lblName.BackColor = Color.Transparent;
             // 
             // lblPhone
             // 
+            this.lblPhone.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(121, 390);
+            this.lblPhone.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.lblPhone.Location = new System.Drawing.Point(120, 384);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(37, 13);
+            this.lblPhone.Size = new System.Drawing.Size(53, 19);
             this.lblPhone.TabIndex = 2;
             this.lblPhone.Text = "Phone";
-            // 
-            // lblProduct
-            // 
-            this.lblProduct.AutoSize = true;
-            this.lblProduct.Location = new System.Drawing.Point(121, 416);
-            this.lblProduct.Name = "lblProduct";
-            this.lblProduct.Size = new System.Drawing.Size(44, 13);
-            this.lblProduct.TabIndex = 4;
-            this.lblProduct.Text = "Product";
+            this.lblPhone.BackColor = Color.Transparent;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(179, 361);
+            this.txtName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtName.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtName.Location = new System.Drawing.Point(193, 343);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(200, 20);
+            this.txtName.Size = new System.Drawing.Size(186, 27);
             this.txtName.TabIndex = 1;
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(179, 387);
+            this.txtPhone.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtPhone.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtPhone.Location = new System.Drawing.Point(193, 381);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(200, 20);
+            this.txtPhone.Size = new System.Drawing.Size(186, 27);
             this.txtPhone.TabIndex = 3;
-            // 
-            // txtProduct
-            // 
-            this.txtProduct.Location = new System.Drawing.Point(179, 413);
-            this.txtProduct.Name = "txtProduct";
-            this.txtProduct.Size = new System.Drawing.Size(200, 20);
-            this.txtProduct.TabIndex = 5;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(329, 474);
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Image = global::SupplementMall.Properties.Resources.btnsave;
+            this.btnSave.Location = new System.Drawing.Point(229, 507);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(125, 25);
             this.btnSave.TabIndex = 8;
-            this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // lblLogOut
             // 
+            this.lblLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLogOut.AutoSize = true;
             this.lblLogOut.Location = new System.Drawing.Point(442, 9);
             this.lblLogOut.Name = "lblLogOut";
@@ -109,39 +106,43 @@
             this.lblLogOut.TabStop = true;
             this.lblLogOut.Text = "Log out";
             this.lblLogOut.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLogOut_LinkClicked);
+            this.lblLogOut.BackColor = Color.Transparent;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(410, 474);
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Image = global::SupplementMall.Properties.Resources.btncancel;
+            this.btnCancel.Location = new System.Drawing.Point(360, 507);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(125, 25);
             this.btnCancel.TabIndex = 9;
-            this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // picFingerPrint
             // 
+            this.picFingerPrint.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.picFingerPrint.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.picFingerPrint.Location = new System.Drawing.Point(124, 32);
             this.picFingerPrint.Name = "picFingerPrint";
             this.picFingerPrint.Size = new System.Drawing.Size(255, 288);
             this.picFingerPrint.TabIndex = 4;
             this.picFingerPrint.TabStop = false;
+            this.picFingerPrint.BackColor = Color.Transparent;
             // 
             // FrmAddCustomerInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::SupplementMall.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(497, 544);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblLogOut);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.txtProduct);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.picFingerPrint);
-            this.Controls.Add(this.lblProduct);
             this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.lblName);
             this.MinimumSize = new System.Drawing.Size(513, 583);
@@ -157,11 +158,9 @@
 
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblPhone;
-        private System.Windows.Forms.Label lblProduct;
         private System.Windows.Forms.PictureBox picFingerPrint;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtPhone;
-        private System.Windows.Forms.TextBox txtProduct;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.LinkLabel lblLogOut;
         private System.Windows.Forms.Button btnCancel;

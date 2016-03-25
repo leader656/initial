@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System;
 using System.Data.SqlServerCe;
 using System.Data;
 using System.Windows.Forms;
@@ -18,7 +13,7 @@ namespace SupplementMall
 
 
         #region Customers
-        public static bool InsertIntoCustomers(string name, string phone, string product, byte[] fingerPrint)
+        public static bool InsertIntoCustomers(string name, string phone, byte[] fingerPrint)
         {
             try
             {
@@ -29,7 +24,6 @@ namespace SupplementMall
                         Connection);
                 cmdInsert.Parameters.AddWithValue("@name", name);
                 cmdInsert.Parameters.AddWithValue("@phone", phone);
-                cmdInsert.Parameters.AddWithValue("@product", product);
                 cmdInsert.Parameters.AddWithValue("@Date", DateTime.Now);
                 cmdInsert.Parameters.AddWithValue("@fingerPrint", fingerPrint);
                 cmdInsert.Parameters.AddWithValue("@isDeleted", false);
@@ -49,18 +43,16 @@ namespace SupplementMall
             return false;
         }
 
-        public static bool UpdateCustomer(int id, string name, string phone, string product, DateTime date)
+        public static bool UpdateCustomer(int id, string name, string phone, DateTime date)
         {
             try
             {
                 Connection.Open();
                 var cmdUpdate =
-                    new SqlCeCommand("UPDATE Customers SET Name = @name, Phone = @phone, " +
-                                     "Product = @product, Date = @date WHERE ID=@id", Connection);
+                    new SqlCeCommand("UPDATE Customers SET Name = @name, Phone = @phone, Date = @date WHERE ID=@id", Connection);
                 cmdUpdate.Parameters.AddWithValue("@id", id);
                 cmdUpdate.Parameters.AddWithValue("@name", name);
                 cmdUpdate.Parameters.AddWithValue("@phone", phone);
-                cmdUpdate.Parameters.AddWithValue("@product", product);
                 cmdUpdate.Parameters.AddWithValue("@date", date);
                 cmdUpdate.ExecuteNonQuery();
 

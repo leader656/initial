@@ -64,18 +64,11 @@ namespace SupplementMall
             try
             {
                 string name = txtName.Text.Trim();
-                string product = txtProduct.Text.Trim();
                 string phone = txtPhone.Text.Trim();
 
                 if (string.IsNullOrEmpty(name))
                 {
                     MessageBox.Show("Name field is empty");
-                    return;
-                }
-
-                if (string.IsNullOrEmpty(product))
-                {
-                    MessageBox.Show("Product field is empty");
                     return;
                 }
 
@@ -85,7 +78,7 @@ namespace SupplementMall
                     return;
                 }
 
-                bool success = DataBaseOperations.InsertIntoCustomers(name, phone, product, _fingerPrintBytes);
+                bool success = DataBaseOperations.InsertIntoCustomers(name, phone, _fingerPrintBytes);
                 if (success)
                 {
                     MessageBox.Show("Customer saved successfuly");

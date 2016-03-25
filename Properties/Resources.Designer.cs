@@ -83,6 +83,16 @@ namespace SupplementMall.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btnadd {
+            get {
+                object obj = ResourceManager.GetObject("btnadd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btnaddcustomer {
             get {
                 object obj = ResourceManager.GetObject("btnaddcustomer", resourceCulture);
@@ -123,6 +133,16 @@ namespace SupplementMall.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btncancelsmall {
+            get {
+                object obj = ResourceManager.GetObject("btncancelsmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btncustomers {
             get {
                 object obj = ResourceManager.GetObject("btncustomers", resourceCulture);
@@ -143,6 +163,16 @@ namespace SupplementMall.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btngo {
+            get {
+                object obj = ResourceManager.GetObject("btngo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btnlogin {
             get {
                 object obj = ResourceManager.GetObject("btnlogin", resourceCulture);
@@ -153,9 +183,29 @@ namespace SupplementMall.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btnnext {
+            get {
+                object obj = ResourceManager.GetObject("btnnext", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btnsave {
             get {
                 object obj = ResourceManager.GetObject("btnsave", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btnstartdevice {
+            get {
+                object obj = ResourceManager.GetObject("btnstartdevice", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

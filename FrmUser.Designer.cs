@@ -173,7 +173,7 @@ namespace SupplementMall
             this.panel1.Controls.Add(this.rbtnAdmin);
             this.panel1.Controls.Add(this.rbtnUser);
             this.panel1.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.panel1.Location = new System.Drawing.Point(199, 284);
+            this.panel1.Location = new System.Drawing.Point(199, 290);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(179, 31);
             this.panel1.TabIndex = 10;
