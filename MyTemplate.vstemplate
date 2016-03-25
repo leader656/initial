@@ -1,0 +1,64 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Supplement Mall</Name>
+    <Description>&lt;No description available&gt;</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Supplement Mall</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="Supplement Mall.csproj" File="Supplement Mall.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="App.config">App.config</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Database.sdf">Database.sdf</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DatabaseDataSet.xsd">DatabaseDataSet.xsd</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DatabaseDataSet.Designer.cs">DatabaseDataSet.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="DatabaseDataSet.xsc">DatabaseDataSet.xsc</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="DatabaseDataSet.xss">DatabaseDataSet.xss</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DataBaseOperations.cs">DataBaseOperations.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="fpengine.cs">fpengine.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmAddCustomer.cs">FrmAddCustomer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmAddCustomer.Designer.cs">FrmAddCustomer.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmAddCustomer.resx">FrmAddCustomer.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmAddCustomerInfo.cs">FrmAddCustomerInfo.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmAddCustomerInfo.Designer.cs">FrmAddCustomerInfo.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmAddCustomerInfo.resx">FrmAddCustomerInfo.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmAdminPanel.cs">FrmAdminPanel.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmAdminPanel.Designer.cs">FrmAdminPanel.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmAdminPanel.resx">FrmAdminPanel.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmCustomer.cs">FrmCustomer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmCustomer.Designer.cs">FrmCustomer.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmCustomer.resx">FrmCustomer.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmCustomers.cs">FrmCustomers.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmCustomers.Designer.cs">FrmCustomers.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmCustomers.resx">FrmCustomers.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmLogin.cs">FrmLogin.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmLogin.Designer.cs">FrmLogin.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmLogin.resx">FrmLogin.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmUser.cs">FrmUser.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmUser.Designer.cs">FrmUser.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmUser.resx">FrmUser.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmUsers.cs">FrmUsers.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmUsers.Designer.cs">FrmUsers.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="FrmUsers.resx">FrmUsers.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Globals.cs">Globals.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Resources.resx">Resources.resx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Resources.Designer.cs">Resources.Designer.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Settings.settings">Settings.settings</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Settings.Designer.cs">Settings.Designer.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Resources" TargetFolderName="Resources">
+        <ProjectItem ReplaceParameters="false" TargetFileName="logo.png">logo.png</ProjectItem>
+      </Folder>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
