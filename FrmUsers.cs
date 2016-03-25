@@ -205,22 +205,6 @@ namespace SupplementMall
             }
         }
 
-        private void btnAddUser_Click(object sender, System.EventArgs e)
-        {
-            try
-            {
-                FrmUser frmUser = new FrmUser(-1);
-                frmUser.Tag = this;
-                _needExitApplication = false;
-                frmUser.Show();
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Error!");
-            }
-        }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             try
@@ -251,6 +235,22 @@ namespace SupplementMall
                 Application.Exit();
             else
                 e.Cancel = true;
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmUser frmUser = new FrmUser(-1);
+                frmUser.Tag = this;
+                _needExitApplication = false;
+                frmUser.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error!");
+            }
         }
     }
 }

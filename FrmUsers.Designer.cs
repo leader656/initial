@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace SupplementMall
 {
@@ -49,6 +50,7 @@ namespace SupplementMall
             // dgvUsers
             // 
             this.dgvUsers.AllowUserToAddRows = false;
+            this.dgvUsers.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -59,7 +61,7 @@ namespace SupplementMall
             this.IsAdmin});
             this.dgvUsers.Location = new System.Drawing.Point(0, 60);
             this.dgvUsers.Name = "dgvUsers";
-            this.dgvUsers.Size = new System.Drawing.Size(496, 394);
+            this.dgvUsers.Size = new System.Drawing.Size(496, 410);
             this.dgvUsers.TabIndex = 0;
             this.dgvUsers.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvUsers_CellMouseClick);
             // 
@@ -102,26 +104,33 @@ namespace SupplementMall
             // 
             // btnAddUser
             // 
-            this.btnAddUser.Location = new System.Drawing.Point(329, 474);
+            this.btnAddUser.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddUser.Image = global::SupplementMall.Properties.Resources.btnadduser;
+            this.btnAddUser.Location = new System.Drawing.Point(359, 487);
             this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(75, 23);
+            this.btnAddUser.Size = new System.Drawing.Size(126, 23);
             this.btnAddUser.TabIndex = 1;
-            this.btnAddUser.Text = "Add User";
             this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(410, 474);
+            this.btnBack.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Image = global::SupplementMall.Properties.Resources.btnback;
+            this.btnBack.Location = new System.Drawing.Point(361, 516);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.Size = new System.Drawing.Size(124, 23);
             this.btnBack.TabIndex = 2;
-            this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // lblLogOut
             // 
+            this.lblLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLogOut.AutoSize = true;
+            this.lblLogOut.BackColor = System.Drawing.Color.Transparent;
             this.lblLogOut.Location = new System.Drawing.Point(442, 9);
             this.lblLogOut.Name = "lblLogOut";
             this.lblLogOut.Size = new System.Drawing.Size(43, 13);
@@ -132,9 +141,11 @@ namespace SupplementMall
             // 
             // lblNote
             // 
+            this.lblNote.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblNote.AutoSize = true;
+            this.lblNote.BackColor = System.Drawing.Color.Transparent;
             this.lblNote.Font = new System.Drawing.Font("Tahoma", 7F);
-            this.lblNote.Location = new System.Drawing.Point(13, 461);
+            this.lblNote.Location = new System.Drawing.Point(12, 473);
             this.lblNote.Name = "lblNote";
             this.lblNote.Size = new System.Drawing.Size(173, 12);
             this.lblNote.TabIndex = 4;
@@ -142,6 +153,8 @@ namespace SupplementMall
             // 
             // picWaitingAnimation
             // 
+            this.picWaitingAnimation.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.picWaitingAnimation.BackColor = System.Drawing.Color.Transparent;
             this.picWaitingAnimation.Location = new System.Drawing.Point(12, 32);
             this.picWaitingAnimation.Name = "picWaitingAnimation";
             this.picWaitingAnimation.Size = new System.Drawing.Size(22, 22);
@@ -152,6 +165,7 @@ namespace SupplementMall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::SupplementMall.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(497, 544);
             this.Controls.Add(this.picWaitingAnimation);
             this.Controls.Add(this.lblNote);

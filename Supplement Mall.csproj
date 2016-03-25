@@ -188,6 +188,10 @@
     <Content Include="Database.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\btnsave.png" />
+    <None Include="Resources\btncancel.png" />
+    <None Include="Resources\btnback.png" />
+    <None Include="Resources\btnadduser.png" />
     <None Include="Resources\btnusers.png" />
     <None Include="Resources\btneditaccount.png" />
     <None Include="Resources\btncustomers.png" />

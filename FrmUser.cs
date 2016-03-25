@@ -62,6 +62,7 @@ namespace SupplementMall
         }
         
         bool _needExitApplication = true;
+
         private void btnSave_Click(object sender, System.EventArgs e)
         {
             try
@@ -151,7 +152,6 @@ namespace SupplementMall
                 MessageBox.Show(ex.ToString());
             }
         }
-
 
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
