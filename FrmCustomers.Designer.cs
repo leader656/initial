@@ -275,7 +275,7 @@ namespace SupplementMall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 509);
+            this.ClientSize = new System.Drawing.Size(497, 544);
             this.Controls.Add(this.picWaitingAnimation);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAddCustomer);
@@ -293,9 +293,7 @@ namespace SupplementMall
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.dgvCustomers);
             this.Controls.Add(this.lblNote);
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(513, 548);
-            this.MinimumSize = new System.Drawing.Size(513, 548);
+            this.MinimumSize = new System.Drawing.Size(513, 583);
             this.Name = "FrmCustomers";
             this.Text = "FrmCustomers";
             this.Load += new System.EventHandler(this.FrmCustomers_Load);

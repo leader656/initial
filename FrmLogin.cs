@@ -12,24 +12,18 @@ namespace SupplementMall
         private static FrmLogin _Instacne;
         public static FrmLogin Instance
         {
-            get
-            {
-                if(_Instacne == null)
-                    _Instacne = new FrmLogin();
-
-                return _Instacne;
-            }
+            get { return _Instacne ?? (_Instacne = new FrmLogin()); }
         }
 
 
-        public FrmLogin()
+        private FrmLogin()
         {
             try
             {
                 InitializeComponent();
                 this.CenterToScreen();
-                this.pictureBox1.Image = Resources.logo;
-                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                this.picLogo.Image = Resources.logo;
+                picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 AddDefaultUsersIfNeeded();
             }
@@ -39,7 +33,7 @@ namespace SupplementMall
             }
         }
 
-        private void AddDefaultUsersIfNeeded()
+        private static void AddDefaultUsersIfNeeded()
         {
             try
             {
@@ -66,7 +60,7 @@ namespace SupplementMall
             try
             {
                 string userName = txtUserName.Text.Trim();
-                string password = txtPassword.Text.Trim();
+                string password = txtPassword.Text.Trim();  
                 if (string.IsNullOrEmpty(userName))
                 {
                     MessageBox.Show("UserName field is empty");
@@ -138,6 +132,11 @@ namespace SupplementMall
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

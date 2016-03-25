@@ -31,13 +31,13 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblPhone = new System.Windows.Forms.Label();
             this.lblProduct = new System.Windows.Forms.Label();
-            this.picFingerPrint = new System.Windows.Forms.PictureBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtProduct = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblLogOut = new System.Windows.Forms.LinkLabel();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.picFingerPrint = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picFingerPrint)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,15 +67,6 @@
             this.lblProduct.Size = new System.Drawing.Size(44, 13);
             this.lblProduct.TabIndex = 4;
             this.lblProduct.Text = "Product";
-            // 
-            // picFingerPrint
-            // 
-            this.picFingerPrint.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.picFingerPrint.Location = new System.Drawing.Point(124, 32);
-            this.picFingerPrint.Name = "picFingerPrint";
-            this.picFingerPrint.Size = new System.Drawing.Size(255, 288);
-            this.picFingerPrint.TabIndex = 4;
-            this.picFingerPrint.TabStop = false;
             // 
             // txtName
             // 
@@ -129,11 +120,20 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // picFingerPrint
+            // 
+            this.picFingerPrint.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.picFingerPrint.Location = new System.Drawing.Point(124, 32);
+            this.picFingerPrint.Name = "picFingerPrint";
+            this.picFingerPrint.Size = new System.Drawing.Size(255, 288);
+            this.picFingerPrint.TabIndex = 4;
+            this.picFingerPrint.TabStop = false;
+            // 
             // FrmAddCustomerInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 509);
+            this.ClientSize = new System.Drawing.Size(497, 544);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblLogOut);
             this.Controls.Add(this.btnSave);
@@ -144,9 +144,7 @@
             this.Controls.Add(this.lblProduct);
             this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.lblName);
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(513, 548);
-            this.MinimumSize = new System.Drawing.Size(513, 548);
+            this.MinimumSize = new System.Drawing.Size(513, 583);
             this.Name = "FrmAddCustomerInfo";
             this.Text = "Customer Info";
             ((System.ComponentModel.ISupportInitialize)(this.picFingerPrint)).EndInit();

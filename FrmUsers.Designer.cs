@@ -108,7 +108,6 @@ namespace SupplementMall
             this.btnAddUser.TabIndex = 1;
             this.btnAddUser.Text = "Add User";
             this.btnAddUser.UseVisualStyleBackColor = true;
-            this.btnAddUser.Click += btnAddUser_Click;
             // 
             // btnBack
             // 
@@ -153,16 +152,14 @@ namespace SupplementMall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 509);
+            this.ClientSize = new System.Drawing.Size(497, 544);
             this.Controls.Add(this.picWaitingAnimation);
             this.Controls.Add(this.lblNote);
             this.Controls.Add(this.lblLogOut);
             this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.dgvUsers);
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(513, 548);
-            this.MinimumSize = new System.Drawing.Size(513, 548);
+            this.MinimumSize = new System.Drawing.Size(513, 583);
             this.Name = "FrmUsers";
             this.Text = "frmUsers";
             this.Load += new System.EventHandler(this.FrmUsers_Load);

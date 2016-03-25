@@ -169,7 +169,6 @@
             this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += btnCancel_Click;
             // 
             // btnSave
             // 
@@ -179,13 +178,12 @@
             this.btnSave.TabIndex = 11;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += btnSave_Click;
             // 
             // FrmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 509);
+            this.ClientSize = new System.Drawing.Size(497, 544);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblLogOut);
@@ -199,9 +197,7 @@
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.lblUName);
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(513, 548);
-            this.MinimumSize = new System.Drawing.Size(513, 548);
+            this.MinimumSize = new System.Drawing.Size(513, 583);
             this.Name = "FrmUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "User";

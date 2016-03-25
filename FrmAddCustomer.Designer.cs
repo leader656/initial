@@ -36,12 +36,12 @@ namespace SupplementMall
             this.btnNext = new System.Windows.Forms.Button();
             this.lblDeviceStatus = new System.Windows.Forms.Label();
             this.lblDeviceStatusInfo = new System.Windows.Forms.Label();
-            this.picFingerPrint = new System.Windows.Forms.PictureBox();
             this.lblLogOut = new System.Windows.Forms.LinkLabel();
             this.btnBack = new System.Windows.Forms.Button();
             this.picWaitingAnimation = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picFingerPrint)).BeginInit();
+            this.picFingerPrint = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picWaitingAnimation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFingerPrint)).BeginInit();
             this.SuspendLayout();
             // 
             // btnStartDevice
@@ -87,16 +87,6 @@ namespace SupplementMall
             this.lblDeviceStatusInfo.Size = new System.Drawing.Size(0, 13);
             this.lblDeviceStatusInfo.TabIndex = 1;
             // 
-            // picFingerPrint
-            // 
-            this.picFingerPrint.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.picFingerPrint.Location = new System.Drawing.Point(125, 38);
-            this.picFingerPrint.Name = "picFingerPrint";
-            this.picFingerPrint.Size = new System.Drawing.Size(255, 288);
-            this.picFingerPrint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picFingerPrint.TabIndex = 6;
-            this.picFingerPrint.TabStop = false;
-            // 
             // lblLogOut
             // 
             this.lblLogOut.AutoSize = true;
@@ -126,11 +116,21 @@ namespace SupplementMall
             this.picWaitingAnimation.TabIndex = 7;
             this.picWaitingAnimation.TabStop = false;
             // 
+            // picFingerPrint
+            // 
+            this.picFingerPrint.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.picFingerPrint.Location = new System.Drawing.Point(125, 38);
+            this.picFingerPrint.Name = "picFingerPrint";
+            this.picFingerPrint.Size = new System.Drawing.Size(255, 288);
+            this.picFingerPrint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picFingerPrint.TabIndex = 6;
+            this.picFingerPrint.TabStop = false;
+            // 
             // FrmAddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 509);
+            this.ClientSize = new System.Drawing.Size(497, 544);
             this.Controls.Add(this.picWaitingAnimation);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblLogOut);
@@ -139,13 +139,11 @@ namespace SupplementMall
             this.Controls.Add(this.lblDeviceStatus);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnStartDevice);
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(513, 548);
-            this.MinimumSize = new System.Drawing.Size(513, 548);
+            this.MinimumSize = new System.Drawing.Size(513, 583);
             this.Name = "FrmAddCustomer";
             this.Text = "Add Customer";
-            ((System.ComponentModel.ISupportInitialize)(this.picFingerPrint)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWaitingAnimation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFingerPrint)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

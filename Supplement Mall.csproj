@@ -188,6 +188,28 @@
     <Content Include="Database.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\btnusers.png" />
+    <None Include="Resources\btneditaccount.png" />
+    <None Include="Resources\btncustomers.png" />
+    <None Include="Resources\btnaddcustomer.png" />
+    <None Include="Resources\btnlogin.png" />
+    <None Include="Resources\newlogin.png" />
+    <None Include="Resources\startdevice.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\next.png" />
+    <None Include="Resources\login2.png" />
+    <None Include="Resources\login.png" />
+    <None Include="Resources\go.png" />
+    <None Include="Resources\Cancel.png" />
+    <None Include="Resources\bigcancel.png" />
+    <None Include="Resources\background.png" />
+    <None Include="Resources\back.png" />
+    <None Include="Resources\apusers.png" />
+    <None Include="Resources\apaddcustomer.png" />
+    <None Include="Resources\adeditaccount.png" />
+    <None Include="Resources\adduser.png" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\adcustomers.png" />
     <None Include="Resources\Animation.gif" />
     <EmbeddedResource Include="Resources\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

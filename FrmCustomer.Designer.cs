@@ -60,7 +60,6 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-         
             // 
             // lblLogOut
             // 
@@ -73,14 +72,14 @@
             this.lblLogOut.Text = "Log out";
             this.lblLogOut.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLogOut_LinkClicked);
             // 
-            // txtPassword
+            // txtProduct
             // 
             this.txtProduct.Location = new System.Drawing.Point(166, 214);
             this.txtProduct.Name = "txtProduct";
             this.txtProduct.Size = new System.Drawing.Size(200, 20);
             this.txtProduct.TabIndex = 5;
             // 
-            // txtUserName
+            // txtPhone
             // 
             this.txtPhone.Location = new System.Drawing.Point(166, 181);
             this.txtPhone.Name = "txtPhone";
@@ -103,7 +102,7 @@
             this.lblProduct.TabIndex = 2;
             this.lblProduct.Text = "Product";
             // 
-            // lblUserName
+            // lblPhone
             // 
             this.lblPhone.AutoSize = true;
             this.lblPhone.Location = new System.Drawing.Point(101, 184);
@@ -130,7 +129,7 @@
             this.lblDate.TabIndex = 6;
             this.lblDate.Text = "Date";
             // 
-            // dateTimePicker1
+            // dtDate
             // 
             this.dtDate.Location = new System.Drawing.Point(166, 246);
             this.dtDate.Name = "dtDate";
@@ -141,7 +140,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 509);
+            this.ClientSize = new System.Drawing.Size(497, 544);
             this.Controls.Add(this.dtDate);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.btnCancel);
@@ -153,9 +152,7 @@
             this.Controls.Add(this.lblProduct);
             this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.lblUName);
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(513, 548);
-            this.MinimumSize = new System.Drawing.Size(513, 548);
+            this.MinimumSize = new System.Drawing.Size(513, 583);
             this.Name = "FrmCustomer";
             this.Text = "Customer";
             this.ResumeLayout(false);

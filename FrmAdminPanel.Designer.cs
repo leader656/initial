@@ -1,4 +1,6 @@
-﻿namespace SupplementMall
+﻿using System.Drawing;
+
+namespace SupplementMall
 {
     partial class FrmAdminPanel
     {
@@ -37,37 +39,41 @@
             // 
             // btnUsers
             // 
-            this.btnUsers.Location = new System.Drawing.Point(194, 185);
+            this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsers.Image = global::SupplementMall.Properties.Resources.btnusers;
+            this.btnUsers.Location = new System.Drawing.Point(130, 146);
             this.btnUsers.Name = "btnUsers";
-            this.btnUsers.Size = new System.Drawing.Size(124, 23);
+            this.btnUsers.Size = new System.Drawing.Size(251, 41);
             this.btnUsers.TabIndex = 0;
-            this.btnUsers.Text = "Users";
             this.btnUsers.UseVisualStyleBackColor = true;
             this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
             // 
             // btnCustomers
             // 
-            this.btnCustomers.Location = new System.Drawing.Point(194, 219);
+            this.btnCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCustomers.Image = global::SupplementMall.Properties.Resources.btncustomers;
+            this.btnCustomers.Location = new System.Drawing.Point(130, 203);
             this.btnCustomers.Name = "btnCustomers";
-            this.btnCustomers.Size = new System.Drawing.Size(124, 23);
+            this.btnCustomers.Size = new System.Drawing.Size(251, 41);
             this.btnCustomers.TabIndex = 1;
-            this.btnCustomers.Text = "Customers";
             this.btnCustomers.UseVisualStyleBackColor = true;
             this.btnCustomers.Click += new System.EventHandler(this.btnCustomers_Click);
             // 
             // btnAddCustomer
             // 
-            this.btnAddCustomer.Location = new System.Drawing.Point(194, 253);
+            this.btnAddCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddCustomer.Image = global::SupplementMall.Properties.Resources.btnaddcustomer;
+            this.btnAddCustomer.Location = new System.Drawing.Point(130, 260);
             this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Size = new System.Drawing.Size(124, 23);
+            this.btnAddCustomer.Size = new System.Drawing.Size(251, 41);
             this.btnAddCustomer.TabIndex = 2;
-            this.btnAddCustomer.Text = "Add Customer";
             this.btnAddCustomer.UseVisualStyleBackColor = true;
             this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
             // lblLogOut
             // 
             this.lblLogOut.AutoSize = true;
+            this.lblLogOut.BackColor = System.Drawing.Color.Transparent;
             this.lblLogOut.Location = new System.Drawing.Point(442, 9);
             this.lblLogOut.Name = "lblLogOut";
             this.lblLogOut.Size = new System.Drawing.Size(43, 13);
@@ -78,11 +84,12 @@
             // 
             // btnEditAccount
             // 
-            this.btnEditAccount.Location = new System.Drawing.Point(194, 287);
+            this.btnEditAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditAccount.Image = global::SupplementMall.Properties.Resources.btneditaccount;
+            this.btnEditAccount.Location = new System.Drawing.Point(130, 317);
             this.btnEditAccount.Name = "btnEditAccount";
-            this.btnEditAccount.Size = new System.Drawing.Size(124, 23);
+            this.btnEditAccount.Size = new System.Drawing.Size(251, 41);
             this.btnEditAccount.TabIndex = 3;
-            this.btnEditAccount.Text = "Edit Account";
             this.btnEditAccount.UseVisualStyleBackColor = true;
             this.btnEditAccount.Click += new System.EventHandler(this.btnEditAccount_Click);
             // 
@@ -90,6 +97,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::SupplementMall.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(497, 509);
             this.Controls.Add(this.btnEditAccount);
             this.Controls.Add(this.lblLogOut);
