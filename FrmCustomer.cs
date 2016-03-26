@@ -19,11 +19,13 @@ namespace SupplementMall
                 this.CenterToScreen();
                 _id = id;
 
-                LoadUserInfoToForm();
+                LoadCustomerInfoToForm();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -37,11 +39,13 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
-        private void LoadUserInfoToForm()
+        private void LoadCustomerInfoToForm()
         {
             try
             {
@@ -55,7 +59,9 @@ namespace SupplementMall
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString(),"Error!");
+                var errorMessage = "error : loading customer info failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -72,7 +78,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : go to previuos form failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
         private void btnSave_Click(object sender, EventArgs e)
@@ -123,7 +131,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(),"Error!");
+                var errorMessage = "error : saving failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -144,7 +154,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : logging out failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -167,7 +179,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : closing form failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 

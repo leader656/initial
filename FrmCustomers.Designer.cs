@@ -32,6 +32,10 @@ namespace SupplementMall
         private void InitializeComponent()
         {
             this.dgvCustomers = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblSearch = new System.Windows.Forms.Label();
             this.lblAllowedPeriod = new System.Windows.Forms.Label();
             this.cmboSearch = new System.Windows.Forms.ComboBox();
@@ -48,10 +52,6 @@ namespace SupplementMall
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblNote = new System.Windows.Forms.Label();
             this.picWaitingAnimation = new System.Windows.Forms.PictureBox();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWaitingAnimation)).BeginInit();
             this.SuspendLayout();
@@ -71,6 +71,38 @@ namespace SupplementMall
             this.dgvCustomers.Size = new System.Drawing.Size(495, 340);
             this.dgvCustomers.TabIndex = 7;
             this.dgvCustomers.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCustomers_CellMouseClick);
+            // 
+            // ID
+            // 
+            this.ID.Frozen = true;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.Frozen = true;
+            this.CustomerName.HeaderText = "Name";
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
+            this.CustomerName.Width = 150;
+            // 
+            // Phone
+            // 
+            this.Phone.Frozen = true;
+            this.Phone.HeaderText = "Phone";
+            this.Phone.Name = "Phone";
+            this.Phone.ReadOnly = true;
+            this.Phone.Width = 130;
+            // 
+            // Date
+            // 
+            this.Date.Frozen = true;
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            this.Date.Width = 180;
             // 
             // lblSearch
             // 
@@ -122,10 +154,11 @@ namespace SupplementMall
             "1 month",
             "3 month",
             "6 month",
-            "1 year"});
-            this.cmboPeriod.Location = new System.Drawing.Point(221, 20);
+            "1 year",
+            "To the end of the year"});
+            this.cmboPeriod.Location = new System.Drawing.Point(217, 20);
             this.cmboPeriod.Name = "cmboPeriod";
-            this.cmboPeriod.Size = new System.Drawing.Size(97, 21);
+            this.cmboPeriod.Size = new System.Drawing.Size(200, 21);
             this.cmboPeriod.TabIndex = 1;
             this.cmboPeriod.SelectedIndexChanged += new System.EventHandler(this.cmboPeriod_SelectedIndexChanged);
             // 
@@ -261,38 +294,6 @@ namespace SupplementMall
             this.picWaitingAnimation.Size = new System.Drawing.Size(22, 22);
             this.picWaitingAnimation.TabIndex = 14;
             this.picWaitingAnimation.TabStop = false;
-            // 
-            // ID
-            // 
-            this.ID.Frozen = true;
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // CustomerName
-            // 
-            this.CustomerName.Frozen = true;
-            this.CustomerName.HeaderText = "Name";
-            this.CustomerName.Name = "CustomerName";
-            this.CustomerName.ReadOnly = true;
-            this.CustomerName.Width = 150;
-            // 
-            // Phone
-            // 
-            this.Phone.Frozen = true;
-            this.Phone.HeaderText = "Phone";
-            this.Phone.Name = "Phone";
-            this.Phone.ReadOnly = true;
-            this.Phone.Width = 130;
-            // 
-            // Date
-            // 
-            this.Date.Frozen = true;
-            this.Date.HeaderText = "Date";
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            this.Date.Width = 180;
             // 
             // FrmCustomers
             // 

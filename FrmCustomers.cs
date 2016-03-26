@@ -27,7 +27,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -43,7 +45,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -61,7 +65,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : going to previous form failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -80,7 +86,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : opening add customer form failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -105,7 +113,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : filling grid failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -121,7 +131,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : filling grid failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -144,9 +156,9 @@ namespace SupplementMall
                 var searchFor = cmboSearch.SelectedItem.ToString();
                 var value = txtValue.Text.Trim();
 
-                var taskGetData = Task.Factory.StartNew(() => selectedIndex == 2 ?
-                    DataBaseOperations.SerachCustomersTableForDate(dtFrom, dtTo) : 
-                    DataBaseOperations.SerachCustomersTableForValue(searchFor, value));
+                var taskGetData = Task.Factory.StartNew(() => selectedIndex == 2
+                    ? DataBaseOperations.SerachCustomersTableForDate(dtFrom, dtTo)
+                    : DataBaseOperations.SerachCustomersTableForValue(searchFor, value));
 
                 taskGetData.ContinueWith((antencedent) =>
                 {
@@ -154,11 +166,23 @@ namespace SupplementMall
                     FillGridViewFromDataTable(antencedent.Result);
                     _isFilterUsed = true;
                 }, TaskScheduler.FromCurrentSynchronizationContext());
-               
+
+            }
+            catch (AggregateException aex)
+            {
+                aex = aex.Flatten();
+                foreach (Exception ex in aex.InnerExceptions)
+                {
+                    var errorMessage = "threading exception : " + ex.Message;
+                    Logger.LogException(ex, errorMessage);
+                    MessageBox.Show(errorMessage, "Error!");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : applying filter to grid failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -170,7 +194,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -198,7 +224,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -232,7 +260,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -247,7 +277,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : refill grid failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -266,7 +298,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : edit customer failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -296,7 +330,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : deleting customer failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -312,7 +348,9 @@ namespace SupplementMall
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error :" + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -335,7 +373,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : exporting to excel failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -362,7 +402,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : logging out failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -386,7 +428,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : closing form failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
     }

@@ -24,7 +24,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -38,7 +40,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -76,7 +80,9 @@ namespace SupplementMall
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -135,14 +141,10 @@ namespace SupplementMall
                     if (success)
                     {
                         MessageBox.Show("User saved successfully", "Success Message");
-                        Form callerForm = (Form)Activator.CreateInstance(this.Tag.GetType());
+                        var callerForm = (Form)Activator.CreateInstance(this.Tag.GetType());
                         callerForm.Show();
                         _needExitApplication = false;
                         this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("couldn't save user info\nSomething went wrong", "Success Message");
                     }
 
                 }
@@ -167,20 +169,18 @@ namespace SupplementMall
                         _needExitApplication = false;
                         this.Close();
                     }
-                    else
-                    {
-                        MessageBox.Show("couldn't update user info\nSomething went wrong", "Success Message");
-                    }
                 }
                 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
-        private void btnCancel_Click(object sender, System.EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             try
             {
@@ -194,7 +194,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : couldn't go to the previous form failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -215,7 +217,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : logging out failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -250,7 +254,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : closing form failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
     }

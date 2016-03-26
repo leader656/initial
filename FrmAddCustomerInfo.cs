@@ -25,7 +25,9 @@ namespace SupplementMall
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -39,7 +41,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -60,7 +64,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : logging out failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -79,7 +85,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : go to the previous form failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -132,7 +140,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                var errorMessage = "error : saving failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -156,7 +166,9 @@ namespace SupplementMall
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : closing form failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
     }

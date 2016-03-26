@@ -28,7 +28,7 @@ namespace SupplementMall
             try
             {
                 Connection.Open();
-                SqlCeCommand cmdInsert =
+                var cmdInsert =
                     new SqlCeCommand(
                         "INSERT INTO Customers(Name,Phone,Date,FingerPrint1,FingerPrint2,FingerPrint3,FingerPrint4,FingerPrint5,FingerPrint6,IsDeleted) " +
                         "VALUES(@name,@phone,@Date,@fingerPrint1,@fingerPrint2,@fingerPrint3,@fingerPrint4,@fingerPrint5,@fingerPrint6,@isDeleted)",
@@ -49,7 +49,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                const string errorMessage = "database error : inserting into customers failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {
@@ -76,7 +78,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                const string errorMessage = "database error : update customer failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {
@@ -100,7 +104,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                const string errorMessage = "database error : Delete customer failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {
@@ -121,7 +127,9 @@ namespace SupplementMall
             }
             catch (SqlCeException exception)
             {
-                MessageBox.Show(exception.ToString());
+                const string errorMessage = "database error : get all customers data failed";
+                Logger.LogException(exception, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {
@@ -142,7 +150,9 @@ namespace SupplementMall
             }
             catch (SqlCeException exception)
             {
-                MessageBox.Show(exception.ToString());
+                var errorMessage = "database error : serach customers data failed were field = " + field + " and Value = " + fieldValue;
+                Logger.LogException(exception, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {
@@ -163,7 +173,9 @@ namespace SupplementMall
             }
             catch (SqlCeException exception)
             {
-                MessageBox.Show(exception.ToString());
+                var errorMessage = "database error : serach customers data failed were time from is = " + from + " and time to is = " + to;
+                Logger.LogException(exception, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {
@@ -185,7 +197,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                const string errorMessage = "database error : get customer data failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {
@@ -201,7 +215,7 @@ namespace SupplementMall
             try
             {
                 Connection.Open();
-                SqlCeCommand cmdInsert =
+                var cmdInsert =
                     new SqlCeCommand(
                         "INSERT INTO Users(Name,UserName,Password,IsAdmin,Email) VALUES(@name,@username,@password,@isAdmin,@email)",
                         Connection);
@@ -216,7 +230,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                const string errorMessage = "database error : insert into users failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {
@@ -247,7 +263,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                const string errorMessage = "database error : update users failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {
@@ -270,7 +288,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                const string errorMessage = "database error : delete user failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {
@@ -292,7 +312,9 @@ namespace SupplementMall
             }
             catch (SqlCeException exception)
             {
-                MessageBox.Show(exception.ToString());
+                const string errorMessage = "database error : get all users failed";
+                Logger.LogException(exception, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {
@@ -314,7 +336,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                const string errorMessage = "database error : validating user failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {
@@ -336,7 +360,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                const string errorMessage = "database error : get user info failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {
@@ -357,7 +383,9 @@ namespace SupplementMall
             }
             catch (SqlCeException exception)
             {
-                MessageBox.Show(exception.ToString());
+                var errorMessage = "database error : search users failed where field = " + field + " and value = " + fieldValue;
+                Logger.LogException(exception, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
             finally
             {

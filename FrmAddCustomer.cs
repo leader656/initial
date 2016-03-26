@@ -31,7 +31,9 @@ namespace SupplementMall
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -46,7 +48,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -82,7 +86,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "plug in fingerprint device first!";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -176,7 +182,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error getting finger print";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -187,6 +195,69 @@ namespace SupplementMall
 
         [HandleProcessCorruptedStateExceptions]
         private void CheckFingerPrintAndNext() 
+        {
+            try
+            {
+                var taskCheck = CheckingFingerPrints();
+
+                SavingFingerPrints(taskCheck);
+            }
+            catch (AggregateException aex)
+            {
+                aex = aex.Flatten();
+                foreach (Exception ex in aex.InnerExceptions)
+                {
+                    var errorMessage = "threading exception : " + ex.Message;
+                    Logger.LogException(ex, errorMessage);
+                    MessageBox.Show(errorMessage, "Error!");
+                }
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = "error : " + ex.Message;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
+            }
+        }
+
+        private void SavingFingerPrints(Task<object[]> taskCheck)
+        {
+            try
+            {
+                taskCheck.ContinueWith((antencedent, lstCurrentFingerPrint) =>
+                {
+                    this.picWaitingAnimation.Image = null;
+                    if ((int) antencedent.Result[0] == 0)
+                    {
+                        var frmCustomerInfo = new FrmAddCustomerInfo(picFingerPrint.Image,
+                            (List<byte[]>) lstCurrentFingerPrint);
+                        frmCustomerInfo.WindowState = this.WindowState;
+                        frmCustomerInfo.Location = this.Location;
+                        frmCustomerInfo.Size = this.Size;
+                        frmCustomerInfo.Tag = this.Tag;
+                        frmCustomerInfo.Show();
+                        _needExitApplication = false;
+                        this.Close();
+                    }
+                    else
+                    {
+                        var matchingDataRow = (DataRow) antencedent.Result[1];
+                        MessageBox.Show("Customer allready Exist" + "\r\n" +
+                                        "Name = " + matchingDataRow["Name"] + "\r\n" +
+                                        "Phone = " + matchingDataRow["Phone"] + "\r\n" +
+                                        "Date = " + matchingDataRow["Date"] + "\r\n");
+                    }
+                }, _lstCurrentFingerPrints, TaskScheduler.FromCurrentSynchronizationContext());
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = "error : saving finger prints failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
+            }
+        }
+
+        private Task<object[]> CheckingFingerPrints()
         {
             try
             {
@@ -213,20 +284,24 @@ namespace SupplementMall
                         var buyDate = (DateTime) dataRow["Date"];
                         switch (Globals.AllowedPeriod)
                         {
+                            case AllowedCustomerPeriod.ToTheEndOfTheYear:
+                                if (buyDate.AddYears(1).Year <= DateTime.Now.Year)
+                                    continue;
+                                break;
                             case AllowedCustomerPeriod.OneMonth:
-                                if (buyDate.AddMonths(1) < DateTime.Now)
+                                if (buyDate.AddMonths(1) <= DateTime.Now)
                                     continue;
                                 break;
                             case AllowedCustomerPeriod.ThreeMonths:
-                                if (buyDate.AddMonths(3) < DateTime.Now)
+                                if (buyDate.AddMonths(3) <= DateTime.Now)
                                     continue;
                                 break;
                             case AllowedCustomerPeriod.SixMonths:
-                                if (buyDate.AddMonths(6) < DateTime.Now)
+                                if (buyDate.AddMonths(6) <= DateTime.Now)
                                     continue;
                                 break;
                             case AllowedCustomerPeriod.OneYear:
-                                if (buyDate.AddYears(1) < DateTime.Now)
+                                if (buyDate.AddYears(1) <= DateTime.Now)
                                     continue;
                                 break;
                         }
@@ -247,43 +322,15 @@ namespace SupplementMall
 
                     return new object[] {result, resultMatchingRow};
                 }, _lstCurrentFingerPrints);
-
-                taskCheck.ContinueWith((antencedent, lstCurrentFingerPrint) =>
-                {
-                    this.picWaitingAnimation.Image = null;
-                    if ((int) antencedent.Result[0] == 0)
-                    {
-                        var frmCustomerInfo = new FrmAddCustomerInfo(picFingerPrint.Image, (List<byte[]>) lstCurrentFingerPrint);
-                        frmCustomerInfo.WindowState = this.WindowState;
-                        frmCustomerInfo.Location = this.Location;
-                        frmCustomerInfo.Size = this.Size;
-                        frmCustomerInfo.Tag = this.Tag;
-                        frmCustomerInfo.Show();
-                        _needExitApplication = false;
-                        this.Close();
-                    }
-                    else
-                    {
-                        var matchingDataRow = (DataRow) antencedent.Result[1];
-                        MessageBox.Show("Customer allready Exist" + "\r\n" +
-                                        "Name = " + matchingDataRow["Name"] + "\r\n" +
-                                        "Phone = " + matchingDataRow["Phone"] + "\r\n" +
-                                        "Date = " + matchingDataRow["Date"] + "\r\n");
-                    }
-                }, _lstCurrentFingerPrints, TaskScheduler.FromCurrentSynchronizationContext());
-            }
-            catch (AggregateException aex)
-            {
-                aex = aex.Flatten();
-                foreach (Exception ex in aex.InnerExceptions)
-                {
-                    MessageBox.Show("Tasking Exception : " + ex.ToString());
-                }
+                return taskCheck;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : checking finger prints failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
+            return null;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -316,7 +363,9 @@ namespace SupplementMall
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : go to previuos form failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -337,7 +386,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : logging out failed";
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
 
@@ -361,7 +412,9 @@ namespace SupplementMall
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                var errorMessage = "error : closing form failed" ;
+                Logger.LogException(ex, errorMessage);
+                MessageBox.Show(errorMessage, "Error!");
             }
         }
     }

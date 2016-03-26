@@ -43,7 +43,9 @@ namespace SupplementMall
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    var errorMessage = "error getting allowed customer period";
+                    Logger.LogException(ex, errorMessage);
+                    MessageBox.Show(errorMessage, "Error!");
                 }
 
                 return AllowedCustomerPeriod.OneYear;
@@ -61,7 +63,9 @@ namespace SupplementMall
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    var errorMessage = "error saving allowed customer period";
+                    Logger.LogException(ex, errorMessage);
+                    MessageBox.Show(errorMessage, "Error!");
                 }
             } 
         }
@@ -74,6 +78,7 @@ namespace SupplementMall
         OneMonth = 0,
         ThreeMonths = 1,
         SixMonths = 2,
-        OneYear = 3
+        OneYear = 3,
+        ToTheEndOfTheYear = 4,
     }
 }
