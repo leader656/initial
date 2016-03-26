@@ -2,20 +2,39 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
+using SupplementMall.Properties;
 
 namespace SupplementMall
 {
     public partial class FrmUser : Form
     {
-        private int _id;
+        bool _needExitApplication = true;
+
+        private readonly int _id;
+
         public FrmUser(int id)
         {
             try
             {
                 InitializeComponent();
+                InitDesigner();
                 this.CenterToScreen();
 
                 _id = id;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void InitDesigner()
+        {
+            try
+            {
+                this.Icon = Resources.ico_logo;
+                this.btnCancel.Image = Resources.btncancel;
+                this.btnSave.Image = Resources.btnsave;
             }
             catch (Exception ex)
             {
@@ -30,7 +49,7 @@ namespace SupplementMall
                 if (_id == -1)
                     return;
 
-                DataRow dataRow = DataBaseOperations.GetUserInfo(_id);
+                var dataRow = DataBaseOperations.GetUserInfo(_id);
                 if (dataRow == null)
                 {
                     MessageBox.Show("couldn't load user info\nSomething went wrong", "Error!");
@@ -41,7 +60,7 @@ namespace SupplementMall
                 txtUserName.Text = (string)dataRow["UserName"];
                 txtPassword.Text = (string)dataRow["Password"];
                 txtEmail.Text = (string)dataRow["Email"];
-                bool isAdmin = (bool)dataRow["IsAdmin"];
+                var isAdmin = (bool)dataRow["IsAdmin"];
 
 
                 if (isAdmin)
@@ -60,17 +79,15 @@ namespace SupplementMall
                 MessageBox.Show(ex.ToString());
             }
         }
-        
-        bool _needExitApplication = true;
 
-        private void btnSave_Click(object sender, System.EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                string name = txtName.Text.Trim();
-                string username = txtUserName.Text.Trim();
-                string password = txtPassword.Text.Trim();
-                string email = txtEmail.Text.Trim();
+                var name = txtName.Text.Trim();
+                var username = txtUserName.Text.Trim();
+                var password = txtPassword.Text.Trim();
+                var email = txtEmail.Text.Trim();
 
 
                 if (string.IsNullOrEmpty(name))
@@ -97,8 +114,14 @@ namespace SupplementMall
                     return;
                 }
 
-                bool isAdmin = rbtnAdmin.Checked;
-                DataTable resultTable = DataBaseOperations.SerachUsersTableForValue("UserName", username);
+                if(!email.Contains("@") || email.Contains(".com"))
+                {
+                    MessageBox.Show("Please enter a valid email");
+                    return;
+                }
+
+                var isAdmin = rbtnAdmin.Checked;
+                var resultTable = DataBaseOperations.SerachUsersTableForValue("UserName", username);
 
                 if (_id == -1)
                 {
@@ -108,7 +131,7 @@ namespace SupplementMall
                         return;
                     }
 
-                    bool success = DataBaseOperations.InsertIntoUsers(name, username, password, isAdmin, email);
+                    var success = DataBaseOperations.InsertIntoUsers(name, username, password, isAdmin, email);
                     if (success)
                     {
                         MessageBox.Show("User saved successfully", "Success Message");
@@ -130,12 +153,16 @@ namespace SupplementMall
                         MessageBox.Show("Username already exist", "Error!");
                         return;
                     }
-                    bool success = DataBaseOperations.UpdateUser(_id, name, username, password, isAdmin, email);
+
+                    var success = DataBaseOperations.UpdateUser(_id, name, username, password, isAdmin, email);
 
                     if (success)
                     {
                         MessageBox.Show("User updated successfully", "Success Message");
-                        Form callerForm = (Form)Activator.CreateInstance(this.Tag.GetType());
+                        var callerForm = (Form)Activator.CreateInstance(this.Tag.GetType());
+                        callerForm.WindowState = this.WindowState;
+                        callerForm.Location = this.Location;
+                        callerForm.Size = this.Size;
                         callerForm.Show();
                         _needExitApplication = false;
                         this.Close();
@@ -157,7 +184,10 @@ namespace SupplementMall
         {
             try
             {
-                Form callerForm = (Form)Activator.CreateInstance(this.Tag.GetType());
+                var callerForm = (Form)Activator.CreateInstance(this.Tag.GetType());
+                callerForm.WindowState = this.WindowState;
+                callerForm.Location = this.Location;
+                callerForm.Size = this.Size;
                 callerForm.Show();
                 _needExitApplication = false;
                 this.Close();
@@ -172,13 +202,16 @@ namespace SupplementMall
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    FrmLogin.Instance.Show();
-                    _needExitApplication = false;
-                    this.Close();
-                }
+                var dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes) 
+                    return;
+
+                FrmLogin.Instance.WindowState = this.WindowState;
+                FrmLogin.Instance.Location = this.Location;
+                FrmLogin.Instance.Size = this.Size;
+                FrmLogin.Instance.Show();
+                _needExitApplication = false;
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -200,12 +233,15 @@ namespace SupplementMall
 
                 if (this.Tag.GetType() == typeof(FrmUsers))
                 {
-                    FrmUsers frmUsers = new FrmUsers();
+                    var frmUsers = new FrmUsers();
+                    frmUsers.WindowState = this.WindowState;
+                    frmUsers.Location = this.Location;
+                    frmUsers.Size = this.Size;
                     frmUsers.Show();
                 }
                 else
                 {
-                    DialogResult result = MessageBox.Show("Are you sure you want to exist the application", "Warning!", MessageBoxButtons.YesNo);
+                    var result = MessageBox.Show("Are you sure you want to exist the application", "Warning!", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                         Application.Exit();
                     else

@@ -96,7 +96,6 @@ namespace SupplementMall
             // 
             this.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Image = global::SupplementMall.Properties.Resources.btnlogin;
             this.btnLogin.Location = new System.Drawing.Point(193, 504);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(125, 28);

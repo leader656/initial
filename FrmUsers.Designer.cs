@@ -106,10 +106,9 @@ namespace SupplementMall
             // 
             this.btnAddUser.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddUser.Image = global::SupplementMall.Properties.Resources.btnadduser;
-            this.btnAddUser.Location = new System.Drawing.Point(359, 487);
+            this.btnAddUser.Location = new System.Drawing.Point(359, 482);
             this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(125, 25);
+            this.btnAddUser.Size = new System.Drawing.Size(125, 28);
             this.btnAddUser.TabIndex = 1;
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
@@ -118,7 +117,6 @@ namespace SupplementMall
             // 
             this.btnBack.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.Image = global::SupplementMall.Properties.Resources.btnback;
             this.btnBack.Location = new System.Drawing.Point(359, 516);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(125, 25);

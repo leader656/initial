@@ -1,22 +1,27 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using SupplementMall.Properties;
 
 namespace SupplementMall
 {
     public partial class FrmAddCustomerInfo : Form
     {
-        private readonly byte[] _fingerPrintBytes;
 
-        public FrmAddCustomerInfo(Image fingerPrintImage, byte[] fingerPrintBytes)
+        bool _needExitApplication = true;
+        private readonly List<byte[]> _lstFingerPrintsBytes;
+
+        public FrmAddCustomerInfo(Image fingerPrintImage, List<byte[]> lstFingerPrintsBytes)
         {
             try
             {
                 InitializeComponent();
+                InitDesigner();
                 this.CenterToScreen();
                 this.picFingerPrint.Image = fingerPrintImage;
-                this._fingerPrintBytes = fingerPrintBytes;
+                this._lstFingerPrintsBytes = lstFingerPrintsBytes;
             }
             catch(Exception ex)
             {
@@ -24,18 +29,34 @@ namespace SupplementMall
             }
         }
 
-        bool _needExitApplication = true;
+        private void InitDesigner()
+        {
+            try
+            {
+                this.Icon = Resources.ico_logo;
+                this.btnCancel.Image = Resources.btncancel;
+                this.btnSave.Image = Resources.btnsave;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         private void lblLogOut_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    FrmLogin.Instance.Show();
-                    _needExitApplication = false;
-                    this.Close();
-                }
+                var dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes)
+                    return;
+
+                FrmLogin.Instance.WindowState = this.WindowState;
+                FrmLogin.Instance.Location = this.Location;
+                FrmLogin.Instance.Size = this.Size;
+                FrmLogin.Instance.Show();
+                _needExitApplication = false;
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -48,6 +69,9 @@ namespace SupplementMall
             try
             {
                 var frmAddCustomer = new FrmAddCustomer();
+                frmAddCustomer.WindowState = this.WindowState;
+                frmAddCustomer.Location = this.Location;
+                frmAddCustomer.Size = this.Size;
                 frmAddCustomer.Tag = this.Tag;
                 frmAddCustomer.Show();
                 _needExitApplication = false;
@@ -63,8 +87,8 @@ namespace SupplementMall
         {
             try
             {
-                string name = txtName.Text.Trim();
-                string phone = txtPhone.Text.Trim();
+                var name = txtName.Text.Trim();
+                var phone = txtPhone.Text.Trim();
 
                 if (string.IsNullOrEmpty(name))
                 {
@@ -78,12 +102,23 @@ namespace SupplementMall
                     return;
                 }
 
-                bool success = DataBaseOperations.InsertIntoCustomers(name, phone, _fingerPrintBytes);
+                int number;
+                var isNumeric = int.TryParse(phone, out number);
+                if (!isNumeric)
+                {
+                    MessageBox.Show("Please enter a valid number");
+                    return;
+                }
+
+                var success = DataBaseOperations.InsertIntoCustomers(name, phone, _lstFingerPrintsBytes);
                 if (success)
                 {
                     MessageBox.Show("Customer saved successfuly");
 
                     var frmAddCustomer = new FrmAddCustomer();
+                    frmAddCustomer.WindowState = this.WindowState;
+                    frmAddCustomer.Location = this.Location;
+                    frmAddCustomer.Size = this.Size;
                     frmAddCustomer.Tag = this.Tag;
                     frmAddCustomer.Show();
                     _needExitApplication = false;
@@ -113,7 +148,7 @@ namespace SupplementMall
                 if (e.CloseReason == CloseReason.WindowsShutDown || e.CloseReason == CloseReason.ApplicationExitCall)
                     return;
 
-                DialogResult result = MessageBox.Show("Are you sure you want to exist the application", "Warning!", MessageBoxButtons.YesNo);
+                var result = MessageBox.Show("Are you sure you want to exist the application", "Warning!", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                     Application.Exit();
                 else

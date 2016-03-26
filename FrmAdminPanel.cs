@@ -1,85 +1,163 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System;
 using System.Windows.Forms;
+using SupplementMall.Properties;
 
 namespace SupplementMall
 {
     public partial class FrmAdminPanel : Form
     {
+        bool _needExitApplication = true;
+
         public FrmAdminPanel()
         {
-            InitializeComponent();
-            this.CenterToScreen();
+            try
+            {
+                InitializeComponent();
+                InitDesinger();
+
+                this.CenterToScreen();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void InitDesinger()
+        {
+            try
+            {
+                this.Icon = Resources.ico_logo;
+                this.btnUsers.Image = Resources.btnusers;
+                this.btnCustomers.Image = Resources.btncustomers;
+                this.btnAddCustomer.Image = Resources.btnaddcustomer;
+                this.btnEditAccount.Image = Resources.btneditaccount;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void lblLogOut_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            try
             {
+                var dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes) 
+                    return;
+
+                FrmLogin.Instance.WindowState = this.WindowState;
+                FrmLogin.Instance.Location = this.Location;
+                FrmLogin.Instance.Size = this.Size;
                 FrmLogin.Instance.Show();
                 _needExitApplication = false;
                 this.Close();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
-        bool _needExitApplication = true;
+
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            var frmAddCustomer = new FrmAddCustomer();
-            frmAddCustomer.Tag = this;
-            frmAddCustomer.Show();
-            _needExitApplication = false;
-            this.Close();
+            try
+            {
+                var frmAddCustomer = new FrmAddCustomer();
+                frmAddCustomer.WindowState = this.WindowState;
+                frmAddCustomer.Location = this.Location;
+                frmAddCustomer.Size = this.Size;
+                frmAddCustomer.Tag = this;
+                frmAddCustomer.Show();
+                _needExitApplication = false;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
-            var frmUsers = new FrmUsers();
-            frmUsers.Show();
-            _needExitApplication = false;
-            this.Close();
+            try
+            {
+                var frmUsers = new FrmUsers();
+                frmUsers.WindowState = this.WindowState;
+                frmUsers.Location = this.Location;
+                frmUsers.Size = this.Size;
+                frmUsers.Show();
+                _needExitApplication = false;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            var frmCustomers = new FrmCustomers();
-            frmCustomers.Show();
-            _needExitApplication = false;
-            this.Close();
+            try
+            {
+                var frmCustomers = new FrmCustomers();
+                frmCustomers.WindowState = this.WindowState;
+                frmCustomers.Location = this.Location;
+                frmCustomers.Size = this.Size;
+                frmCustomers.Show();
+                _needExitApplication = false;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnEditAccount_Click(object sender, EventArgs e)
         {
-            var frmUser = new FrmUser(Globals.Id);
-            frmUser.Show();
-            frmUser.Tag = this;
-            _needExitApplication = false;
-            this.Close();
+            try
+            {
+                var frmUser = new FrmUser(Globals.Id);
+                frmUser.WindowState = this.WindowState;
+                frmUser.Location = this.Location;
+                frmUser.Size = this.Size;
+                frmUser.Show();
+                frmUser.Tag = this;
+                _needExitApplication = false;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            base.OnFormClosing(e);
+            try
+            {
+                base.OnFormClosing(e);
 
-            if (!_needExitApplication)
-                return;
+                if (!_needExitApplication)
+                    return;
 
-            if (e.CloseReason == CloseReason.WindowsShutDown || e.CloseReason == CloseReason.ApplicationExitCall)
-                return;
+                if (e.CloseReason == CloseReason.WindowsShutDown || e.CloseReason == CloseReason.ApplicationExitCall)
+                    return;
 
-            DialogResult result = MessageBox.Show("Are you sure you want to exist the application", "Warning!", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-                Application.Exit();
-            else
-                e.Cancel = true;
+                var result = MessageBox.Show("Are you sure you want to exist the application", "Warning!", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                    Application.Exit();
+                else
+                    e.Cancel = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

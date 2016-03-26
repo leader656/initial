@@ -1,31 +1,47 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Data.SqlServerCe;
 using System.Data;
+using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SupplementMall
 {
     internal class DataBaseOperations
     {
+        #if DEBUG
+        private static readonly SqlCeConnection Connection =
+            new SqlCeConnection("Data Source=" + Application.StartupPath + Path.DirectorySeparatorChar + "Database.sdf");
+        #else
 
-        private static readonly SqlCeConnection Connection =  new SqlCeConnection("Data Source="+ Application.StartupPath+"\\Database.sdf");
-
+        private static readonly SqlCeConnection Connection =
+            new SqlCeConnection("Data Source=" + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                                Path.DirectorySeparatorChar + "DataBase" + Path.DirectorySeparatorChar + "Database.sdf");
+        #endif
 
         #region Customers
-        public static bool InsertIntoCustomers(string name, string phone, byte[] fingerPrint)
+        public static bool InsertIntoCustomers(string name, string phone, List<byte[]> lstFingerPrints)
         {
             try
             {
                 Connection.Open();
                 SqlCeCommand cmdInsert =
                     new SqlCeCommand(
-                        "INSERT INTO Customers(Name,Phone,Product,Date,FingerPrint,IsDeleted) VALUES(@name,@phone,@product,@Date,@fingerPrint,@isDeleted)",
+                        "INSERT INTO Customers(Name,Phone,Date,FingerPrint1,FingerPrint2,FingerPrint3,FingerPrint4,FingerPrint5,FingerPrint6,IsDeleted) " +
+                        "VALUES(@name,@phone,@Date,@fingerPrint1,@fingerPrint2,@fingerPrint3,@fingerPrint4,@fingerPrint5,@fingerPrint6,@isDeleted)",
                         Connection);
                 cmdInsert.Parameters.AddWithValue("@name", name);
                 cmdInsert.Parameters.AddWithValue("@phone", phone);
                 cmdInsert.Parameters.AddWithValue("@Date", DateTime.Now);
-                cmdInsert.Parameters.AddWithValue("@fingerPrint", fingerPrint);
+                cmdInsert.Parameters.AddWithValue("@fingerPrint1", lstFingerPrints[0]);
+                cmdInsert.Parameters.AddWithValue("@fingerPrint2", lstFingerPrints[1]);
+                cmdInsert.Parameters.AddWithValue("@fingerPrint3", lstFingerPrints[2]);
+                cmdInsert.Parameters.AddWithValue("@fingerPrint4", lstFingerPrints[3]);
+                cmdInsert.Parameters.AddWithValue("@fingerPrint5", lstFingerPrints[4]);
+                cmdInsert.Parameters.AddWithValue("@fingerPrint6", lstFingerPrints[5]);
                 cmdInsert.Parameters.AddWithValue("@isDeleted", false);
                 cmdInsert.ExecuteNonQuery();
 

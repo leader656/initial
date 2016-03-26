@@ -193,27 +193,25 @@ namespace SupplementMall
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Image = global::SupplementMall.Properties.Resources.btncancel;
             this.btnCancel.Location = new System.Drawing.Point(359, 504);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(126, 28);
             this.btnCancel.TabIndex = 12;
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += btnCancel_Click;
+            this.btnSave.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Image = global::SupplementMall.Properties.Resources.btnsave;
             this.btnSave.Location = new System.Drawing.Point(227, 504);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(126, 28);
             this.btnSave.TabIndex = 11;
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += btnSave_Click;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FrmUser
             // 

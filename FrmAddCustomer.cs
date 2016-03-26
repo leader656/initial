@@ -1,8 +1,10 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SupplementMall.Properties;
@@ -14,17 +16,35 @@ namespace SupplementMall
         private int _matsize;
         private byte[] _matbuf;
 
-        private byte[] _currentFingerPrint;
+        private List<byte[]> _lstCurrentFingerPrints;
         private int _size;
+        
+        bool _needExitApplication = true;
 
         public FrmAddCustomer()
         {
             try
             {
                 InitializeComponent();
+                InitDesigner();
                 this.CenterToScreen();
             }
             catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void InitDesigner()
+        {
+            try
+            {
+                this.Icon = Resources.ico_logo;
+                this.btnStartDevice.Image = Resources.btnstartdevice;
+                this.btnNext.Image = Resources.btnnext;
+                this.btnBack.Image = Resources.btnback;
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -34,9 +54,9 @@ namespace SupplementMall
         {
             try
             {
-                _currentFingerPrint = null;
+                _lstCurrentFingerPrints = new List<byte[]>();
                 _size = 0;
-
+                lblCount.Text = "0";
                 _matsize = 0;
                 _matbuf = new byte[256];
 
@@ -50,7 +70,9 @@ namespace SupplementMall
                     {
                         lblDeviceStatusInfo.Text = "Open Fingerprint Reader Succeed";
                         fpengine.GenFpChar();
-                        timerFinger.Enabled = true;
+
+                        timerFinger.Enabled = true; 
+                        btnStartDevice.Enabled = false;
                     }
                     else
                         lblDeviceStatusInfo.Text = "Link Fingerprint Reader Fail";
@@ -68,8 +90,8 @@ namespace SupplementMall
         {
             try
             {
-                int wm = fpengine.GetWorkMsg();
-                int rm = fpengine.GetRetMsg();
+                var wm = fpengine.GetWorkMsg();
+                var rm = fpengine.GetRetMsg();
 
                 switch (wm)
                 {
@@ -84,31 +106,64 @@ namespace SupplementMall
                         break;
                     case fpengine.FPM_GENCHAR:
                         {
+
                             if (rm == 1)
                             {
                                 lblDeviceStatusInfo.Text = "Enrol Fingerprint Template Succeed";
                                 fpengine.GetFpCharByGen(_matbuf, ref _matsize);
-                                btnNext.Enabled = true;
+                                lblCount.Text = _lstCurrentFingerPrints.Count + "";
                             }
                             else
                             {
                                 lblDeviceStatusInfo.Text = "Enrol Fingerprint Template Fail";
                                 btnNext.Enabled = false;
                             }
-                            timerFinger.Enabled = false;
+                            if (_lstCurrentFingerPrints.Count == 6)
+                            {
+                                if (rm == 1)
+                                    btnNext.Enabled = true;
+
+                                timerFinger.Enabled = false;
+                                btnStartDevice.Enabled = true;
+                            }
+                            else
+                            {
+                                _size = 0;
+
+                                _matsize = 0;
+                                _matbuf = new byte[256];
+
+                                if (fpengine.OpenDevice(0, 0, 0) == 1)
+                                {
+                                    if (fpengine.LinkDevice() == 1)
+                                    {
+                                        lblDeviceStatusInfo.Text = "Open Fingerprint Reader Succeed";
+                                        fpengine.GenFpChar();
+                                        timerFinger.Enabled = true;
+                                    }
+                                    else
+                                        lblDeviceStatusInfo.Text = "Link Fingerprint Reader Fail";
+                                }
+                                else
+                                    lblDeviceStatusInfo.Text = "Open Fingerprint Reader Fail";
+                            }
                         }
                         break;
                     case fpengine.FPM_NEWIMAGE:
                         {
                             var fingerbmp = new Bitmap(picFingerPrint.Width, picFingerPrint.Height);
                             var g = Graphics.FromImage(fingerbmp);
+
                             fpengine.DrawImage(g.GetHdc(), 0, 0);
                             g.Dispose();
-                            _currentFingerPrint = new byte[256];
-                            var byteFingerPrint = new byte[256];
-                            fpengine.GetFpCharByGen(byteFingerPrint, ref _size);
-                            Array.Copy(byteFingerPrint, _currentFingerPrint, byteFingerPrint.Length);
 
+                            var newFingerPrint = new byte[256];
+                            var byteFingerPrint = new byte[256];
+
+                            fpengine.GetFpCharByGen(byteFingerPrint, ref _size);
+                            Array.Copy(byteFingerPrint, newFingerPrint, byteFingerPrint.Length);
+
+                            _lstCurrentFingerPrints.Add(newFingerPrint);
                             picFingerPrint.Image = fingerbmp;
                         }
                         break;
@@ -118,7 +173,6 @@ namespace SupplementMall
                         }
                         break;
                 }
-
             }
             catch (Exception ex)
             {
@@ -128,13 +182,19 @@ namespace SupplementMall
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            CheckFingerPrintAndNext();
+        }
+
+        [HandleProcessCorruptedStateExceptions]
+        private void CheckFingerPrintAndNext() 
+        {
             try
             {
                 this.picWaitingAnimation.Image = Resources.Animation;
                 picWaitingAnimation.SizeMode = PictureBoxSizeMode.StretchImage;
-                Task<object[]> taskCheck = Task.Factory.StartNew<object[]>((currentFingerPrint) =>
+                var taskCheck = Task.Factory.StartNew(lstCurrentFingerPrints =>
                 {
-                    var tmpcurrentFingerPrint = (byte[])currentFingerPrint;
+                    var lstFingerPrints = (List<byte[]>) lstCurrentFingerPrints;
                     var allCustomers = DataBaseOperations.GetAllDataFromCustomers();
 
                     var result = 0;
@@ -142,8 +202,15 @@ namespace SupplementMall
 
                     foreach (DataRow dataRow in allCustomers.Rows)
                     {
-                        var tmpFingerPrint = (byte[])dataRow["FingerPrint"];
-                        DateTime buyDate = (DateTime)dataRow["Date"];
+                        var tmpFingerPrints = new List<byte[]>();
+                        tmpFingerPrints.Add((byte[]) dataRow["FingerPrint1"]);
+                        tmpFingerPrints.Add((byte[]) dataRow["FingerPrint2"]);
+                        tmpFingerPrints.Add((byte[]) dataRow["FingerPrint3"]);
+                        tmpFingerPrints.Add((byte[]) dataRow["FingerPrint4"]);
+                        tmpFingerPrints.Add((byte[]) dataRow["FingerPrint5"]);
+                        tmpFingerPrints.Add((byte[]) dataRow["FingerPrint6"]);
+
+                        var buyDate = (DateTime) dataRow["Date"];
                         switch (Globals.AllowedPeriod)
                         {
                             case AllowedCustomerPeriod.OneMonth:
@@ -162,25 +229,34 @@ namespace SupplementMall
                                 if (buyDate.AddYears(1) < DateTime.Now)
                                     continue;
                                 break;
-
                         }
-                        var newResult = fpengine.MatchTemplateOne(tmpFingerPrint, tmpcurrentFingerPrint, 256);
-                        if (newResult <= result)
-                            continue;
 
-                        resultMatchingRow = dataRow;
-                        result = newResult;
+                        foreach (var currentFingerPrint in lstFingerPrints)
+                        {
+                            foreach (var savedFingerPrint in tmpFingerPrints)
+                            {
+                                var newResult = fpengine.MatchTemplateOne(savedFingerPrint, currentFingerPrint, 256);
+                                if (newResult <= result)
+                                    continue;
+
+                                resultMatchingRow = dataRow;
+                                result = newResult;
+                            }
+                        }
                     }
 
-                    return new object[]{result, resultMatchingRow};
-                }, _currentFingerPrint);
+                    return new object[] {result, resultMatchingRow};
+                }, _lstCurrentFingerPrints);
 
-                taskCheck.ContinueWith((antencedent, currentFingerPrint) =>
+                taskCheck.ContinueWith((antencedent, lstCurrentFingerPrint) =>
                 {
                     this.picWaitingAnimation.Image = null;
                     if ((int) antencedent.Result[0] == 0)
                     {
-                        var frmCustomerInfo = new FrmAddCustomerInfo(picFingerPrint.Image, (byte[]) currentFingerPrint);
+                        var frmCustomerInfo = new FrmAddCustomerInfo(picFingerPrint.Image, (List<byte[]>) lstCurrentFingerPrint);
+                        frmCustomerInfo.WindowState = this.WindowState;
+                        frmCustomerInfo.Location = this.Location;
+                        frmCustomerInfo.Size = this.Size;
                         frmCustomerInfo.Tag = this.Tag;
                         frmCustomerInfo.Show();
                         _needExitApplication = false;
@@ -192,10 +268,9 @@ namespace SupplementMall
                         MessageBox.Show("Customer allready Exist" + "\r\n" +
                                         "Name = " + matchingDataRow["Name"] + "\r\n" +
                                         "Phone = " + matchingDataRow["Phone"] + "\r\n" +
-                                        "Product = " + matchingDataRow["Product"] + "\r\n" +
                                         "Date = " + matchingDataRow["Date"] + "\r\n");
                     }
-                }, _currentFingerPrint, TaskScheduler.FromCurrentSynchronizationContext());
+                }, _lstCurrentFingerPrints, TaskScheduler.FromCurrentSynchronizationContext());
             }
             catch (AggregateException aex)
             {
@@ -211,27 +286,32 @@ namespace SupplementMall
             }
         }
 
-        bool _needExitApplication = true;
         private void btnBack_Click(object sender, EventArgs e)
         {
             try
             {
                 if (Globals.IsAdmin)
                 {
-                    Form callerForm = (Form)Activator.CreateInstance(this.Tag.GetType());
+                    var callerForm = (Form)Activator.CreateInstance(this.Tag.GetType());
+                    callerForm.WindowState = this.WindowState;
+                    callerForm.Location = this.Location;
+                    callerForm.Size = this.Size;
                     callerForm.Show();
                     _needExitApplication = false;
                     this.Close();
                 }
                 else
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        FrmLogin.Instance.Show();
-                        _needExitApplication = false;
-                        this.Close();
-                    }
+                    var dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
+                    if (dialogResult != DialogResult.Yes)
+                        return;
+
+                    FrmLogin.Instance.WindowState = this.WindowState;
+                    FrmLogin.Instance.Location = this.Location;
+                    FrmLogin.Instance.Size = this.Size;
+                    FrmLogin.Instance.Show();
+                    _needExitApplication = false;
+                    this.Close();
                 }
             }
             catch(Exception ex)
@@ -244,13 +324,16 @@ namespace SupplementMall
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    FrmLogin.Instance.Show();
-                    _needExitApplication = false;
-                    this.Close();
-                }
+                var dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes) 
+                    return;
+
+                FrmLogin.Instance.WindowState = this.WindowState;
+                FrmLogin.Instance.Location = this.Location;
+                FrmLogin.Instance.Size = this.Size;
+                FrmLogin.Instance.Show();
+                _needExitApplication = false;
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -270,7 +353,7 @@ namespace SupplementMall
                 if (e.CloseReason == CloseReason.WindowsShutDown || e.CloseReason == CloseReason.ApplicationExitCall)
                     return;
 
-                DialogResult result = MessageBox.Show("Are you sure you want to exist the application", "Warning!", MessageBoxButtons.YesNo);
+                var result = MessageBox.Show("Are you sure you want to exist the application", "Warning!", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                     Application.Exit();
                 else

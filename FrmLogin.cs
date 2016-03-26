@@ -9,10 +9,10 @@ namespace SupplementMall
 {
     public partial class FrmLogin : Form
     {
-        private static FrmLogin _Instacne;
+        private static FrmLogin _instacne;
         public static FrmLogin Instance
         {
-            get { return _Instacne ?? (_Instacne = new FrmLogin()); }
+            get { return _instacne ?? (_instacne = new FrmLogin()); }
         }
 
 
@@ -21,11 +21,26 @@ namespace SupplementMall
             try
             {
                 InitializeComponent();
+                InitDesigner();
                 this.CenterToScreen();
-                this.picLogo.Image = Resources.logo;
-                picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 AddDefaultUsersIfNeeded();
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void InitDesigner()
+        {
+            try
+            {
+                this.Icon = Resources.ico_logo;
+                this.btnLogin.Image = Resources.btnlogin;
+                this.picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+                this.picLogo.Image = Resources.logo;
             }
             catch (Exception ex)
             {
@@ -59,8 +74,8 @@ namespace SupplementMall
         {
             try
             {
-                string userName = txtUserName.Text.Trim();
-                string password = txtPassword.Text.Trim();  
+                var userName = txtUserName.Text.Trim();
+                var password = txtPassword.Text.Trim();  
                 if (string.IsNullOrEmpty(userName))
                 {
                     MessageBox.Show("UserName field is empty");
@@ -85,7 +100,7 @@ namespace SupplementMall
                     return;
                 }
 
-                DataRow userInfo = DataBaseOperations.IsValidUser(userName, password);
+                var userInfo = DataBaseOperations.IsValidUser(userName, password);
                 if (userInfo == null)
                 {
                     MessageBox.Show("Invalid username or password");
@@ -103,6 +118,9 @@ namespace SupplementMall
                 {
                     Globals.IsAdmin = true;
                     var frmAdminPanel = new FrmAdminPanel();
+                    frmAdminPanel.WindowState = this.WindowState;
+                    frmAdminPanel.Location = this.Location;
+                    frmAdminPanel.Size = this.Size;
                     frmAdminPanel.Show();
                     this.Hide();
                 }
@@ -110,6 +128,9 @@ namespace SupplementMall
                 {
                     Globals.IsAdmin = false;
                     var frmAddCustomer = new FrmAddCustomer();
+                    frmAddCustomer.WindowState = this.WindowState;
+                    frmAddCustomer.Location = this.Location;
+                    frmAddCustomer.Size = this.Size;
                     frmAddCustomer.Tag = this;
                     frmAddCustomer.Show();
                     this.Hide();

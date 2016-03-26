@@ -30,33 +30,20 @@ namespace SupplementMall
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnUsers = new System.Windows.Forms.Button();
             this.btnCustomers = new System.Windows.Forms.Button();
             this.btnAddCustomer = new System.Windows.Forms.Button();
             this.lblLogOut = new System.Windows.Forms.LinkLabel();
             this.btnEditAccount = new System.Windows.Forms.Button();
+            this.btnUsers = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnUsers
-            // 
-            this.btnUsers.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsers.Image = global::SupplementMall.Properties.Resources.btnusers;
-            this.btnUsers.Location = new System.Drawing.Point(130, 146);
-            this.btnUsers.Name = "btnUsers";
-            this.btnUsers.Size = new System.Drawing.Size(247, 35);
-            this.btnUsers.TabIndex = 0;
-            this.btnUsers.UseVisualStyleBackColor = true;
-            this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
             // 
             // btnCustomers
             // 
             this.btnCustomers.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCustomers.Image = global::SupplementMall.Properties.Resources.btncustomers;
-            this.btnCustomers.Location = new System.Drawing.Point(130, 203);
+            this.btnCustomers.Location = new System.Drawing.Point(131, 203);
             this.btnCustomers.Name = "btnCustomers";
-            this.btnCustomers.Size = new System.Drawing.Size(247, 35);
+            this.btnCustomers.Size = new System.Drawing.Size(250, 41);
             this.btnCustomers.TabIndex = 1;
             this.btnCustomers.UseVisualStyleBackColor = true;
             this.btnCustomers.Click += new System.EventHandler(this.btnCustomers_Click);
@@ -65,10 +52,9 @@ namespace SupplementMall
             // 
             this.btnAddCustomer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAddCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddCustomer.Image = global::SupplementMall.Properties.Resources.btnaddcustomer;
-            this.btnAddCustomer.Location = new System.Drawing.Point(130, 260);
+            this.btnAddCustomer.Location = new System.Drawing.Point(131, 260);
             this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Size = new System.Drawing.Size(247, 35);
+            this.btnAddCustomer.Size = new System.Drawing.Size(250, 41);
             this.btnAddCustomer.TabIndex = 2;
             this.btnAddCustomer.UseVisualStyleBackColor = true;
             this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
@@ -90,13 +76,23 @@ namespace SupplementMall
             // 
             this.btnEditAccount.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnEditAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditAccount.Image = global::SupplementMall.Properties.Resources.btneditaccount;
-            this.btnEditAccount.Location = new System.Drawing.Point(130, 317);
+            this.btnEditAccount.Location = new System.Drawing.Point(131, 317);
             this.btnEditAccount.Name = "btnEditAccount";
-            this.btnEditAccount.Size = new System.Drawing.Size(247, 35);
+            this.btnEditAccount.Size = new System.Drawing.Size(250, 41);
             this.btnEditAccount.TabIndex = 3;
             this.btnEditAccount.UseVisualStyleBackColor = true;
             this.btnEditAccount.Click += new System.EventHandler(this.btnEditAccount_Click);
+            // 
+            // btnUsers
+            // 
+            this.btnUsers.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsers.Location = new System.Drawing.Point(131, 146);
+            this.btnUsers.Name = "btnUsers";
+            this.btnUsers.Size = new System.Drawing.Size(250, 41);
+            this.btnUsers.TabIndex = 0;
+            this.btnUsers.UseVisualStyleBackColor = true;
+            this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
             // 
             // FrmAdminPanel
             // 
@@ -119,10 +115,10 @@ namespace SupplementMall
 
         #endregion
 
-        private System.Windows.Forms.Button btnUsers;
         private System.Windows.Forms.Button btnCustomers;
         private System.Windows.Forms.Button btnAddCustomer;
         private System.Windows.Forms.LinkLabel lblLogOut;
         private System.Windows.Forms.Button btnEditAccount;
+        private System.Windows.Forms.Button btnUsers;
     }
 }

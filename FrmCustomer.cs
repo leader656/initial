@@ -1,27 +1,51 @@
 ﻿
 using System;
-using System.Data;
 using System.Windows.Forms;
+using SupplementMall.Properties;
 
 namespace SupplementMall
 {
     public partial class FrmCustomer : Form
     {
-        private int _id;
+        private readonly int _id;
+        bool _needExitApplication = true;
+
         public FrmCustomer(int id)
         {
-            InitializeComponent();
-            this.CenterToScreen();
-            _id = id;
+            try
+            {
+                InitializeComponent();
+                InitDesigner();
+                this.CenterToScreen();
+                _id = id;
 
-            LoadUserInfoToForm();
+                LoadUserInfoToForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void InitDesigner()
+        {
+            try
+            {
+                this.Icon = Resources.ico_logo;
+                this.btnSave.Image = Resources.btnsave;
+                this.btnCancel.Image = Resources.btncancel;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void LoadUserInfoToForm()
         {
             try
             {
-                DataRow drCustomerInfo = DataBaseOperations.GetCustomerInfo(_id);
+                var drCustomerInfo = DataBaseOperations.GetCustomerInfo(_id);
                 if (drCustomerInfo == null)
                     return;
 
@@ -39,7 +63,10 @@ namespace SupplementMall
         {
             try
             {
-                FrmCustomers frmCustomers = new FrmCustomers();
+                var frmCustomers = new FrmCustomers();
+                frmCustomers.WindowState = this.WindowState;
+                frmCustomers.Location = this.Location;
+                frmCustomers.Size = this.Size;
                 frmCustomers.Show();
                 this.Close();
             }
@@ -52,9 +79,9 @@ namespace SupplementMall
         {
             try
             {
-                string name = txtName.Text.Trim();
-                string phone =  txtPhone.Text.Trim();
-                DateTime date = dtDate.Value;
+                var name = txtName.Text.Trim();
+                var phone =  txtPhone.Text.Trim();
+                var date = dtDate.Value;
 
 
                 if (string.IsNullOrEmpty(name))
@@ -69,11 +96,22 @@ namespace SupplementMall
                     return;
                 }
 
-                bool success = DataBaseOperations.UpdateCustomer(_id, name, phone, date);
+                int number;
+                var isNumeric = int.TryParse(phone, out number);
+                if (!isNumeric)
+                {
+                    MessageBox.Show("Please enter a valid number");
+                    return;
+                }
+
+                var success = DataBaseOperations.UpdateCustomer(_id, name, phone, date);
                 if(success)
                 {
                     MessageBox.Show("Customer updated successfully","Success");
-                    FrmCustomers frmCustomers = new FrmCustomers();
+                    var frmCustomers = new FrmCustomers();
+                    frmCustomers.WindowState = this.WindowState;
+                    frmCustomers.Location = this.Location;
+                    frmCustomers.Size = this.Size;
                     frmCustomers.Show();
                     this.Close();
                 }
@@ -88,18 +126,21 @@ namespace SupplementMall
                 MessageBox.Show(ex.ToString(),"Error!");
             }
         }
-        bool _needExitApplication = true;
+
         private void lblLogOut_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    FrmLogin.Instance.Show();
-                    _needExitApplication = false;
-                    this.Close();
-                }
+                var dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes)
+                    return;
+
+                FrmLogin.Instance.WindowState = this.WindowState;
+                FrmLogin.Instance.Location = this.Location;
+                FrmLogin.Instance.Size = this.Size;
+                FrmLogin.Instance.Show();
+                _needExitApplication = false;
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -109,18 +150,27 @@ namespace SupplementMall
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            base.OnFormClosing(e);
+            try
+            {
+                base.OnFormClosing(e);
 
-            if (!_needExitApplication)
-                return;
+                if (!_needExitApplication)
+                    return;
 
-            if (e.CloseReason == CloseReason.WindowsShutDown) return;
-         
-            FrmCustomers frmCustomers = new FrmCustomers();
-            frmCustomers.Show();
+                if (e.CloseReason == CloseReason.WindowsShutDown) return;
 
+                var frmCustomers = new FrmCustomers();
+                frmCustomers.WindowState = this.WindowState;
+                frmCustomers.Location = this.Location;
+                frmCustomers.Size = this.Size;
+                frmCustomers.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error!");
+            }
         }
 
-        
+
     }
 }

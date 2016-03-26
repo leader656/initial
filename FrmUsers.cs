@@ -10,12 +10,29 @@ namespace SupplementMall
 {
     public partial class FrmUsers : Form
     {
+        bool _needExitApplication = true;
+
         public FrmUsers()
         {
             try
             {
                 InitializeComponent();
+                InitDesigner();
                 this.CenterToScreen();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error!");
+            }
+        }
+
+        private void InitDesigner()
+        {
+            try
+            {
+                this.Icon = Resources.ico_logo;
+                this.btnAddUser.Image = Resources.btnadduser;
+                this.btnBack.Image = Resources.btnback;
             }
             catch (Exception ex)
             {
@@ -65,19 +82,21 @@ namespace SupplementMall
                 MessageBox.Show(ex.ToString(), "Error!");
             }
         }
-
-        bool _needExitApplication = true;
+      
         private void lblLogOut_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    FrmLogin.Instance.Show();
-                    _needExitApplication = false;
-                    this.Close();
-                }
+                var dialogResult = MessageBox.Show("Are you sure you want to logout", "Logout", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes)
+                    return;
+
+                FrmLogin.Instance.WindowState = this.WindowState;
+                FrmLogin.Instance.Location = this.Location;
+                FrmLogin.Instance.Size = this.Size;
+                FrmLogin.Instance.Show();
+                _needExitApplication = false;
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -89,29 +108,29 @@ namespace SupplementMall
         {
             try
             {
-                if (e.Button == MouseButtons.Right)
-                {
-                    int currentMouseOverRow = e.RowIndex;
-                    if (currentMouseOverRow == -1)
-                        return;
-                    int currentRowId = (int)dgvUsers.Rows[currentMouseOverRow].Cells["ID"].Value;
+                if (e.Button != MouseButtons.Right) 
+                    return;
+                var currentMouseOverRow = e.RowIndex;
+                if (currentMouseOverRow == -1)
+                    return;
 
-                    var contextMenu = new ContextMenu();
-                    var editMenuItem = new MenuItem("Edit", EditItem_Clicked);
-                    editMenuItem.Tag = currentRowId;
-                    contextMenu.MenuItems.Add(editMenuItem);
+                var currentRowId = (int)dgvUsers.Rows[currentMouseOverRow].Cells["ID"].Value;
 
-                    var deleteMenuItem = new MenuItem("Delete", DeleteItem_Clicked);
-                    deleteMenuItem.Tag = currentRowId;
-                    contextMenu.MenuItems.Add(deleteMenuItem);
+                var contextMenu = new ContextMenu();
+                var editMenuItem = new MenuItem("Edit", EditItem_Clicked);
+                editMenuItem.Tag = currentRowId;
+                contextMenu.MenuItems.Add(editMenuItem);
 
-                    var exportMenuItem = new MenuItem("Export to Excel", ExportItem_Clicked);
-                    exportMenuItem.Tag = currentRowId;
-                    contextMenu.MenuItems.Add(exportMenuItem);
+                var deleteMenuItem = new MenuItem("Delete", DeleteItem_Clicked);
+                deleteMenuItem.Tag = currentRowId;
+                contextMenu.MenuItems.Add(deleteMenuItem);
 
-                    var cellRectangle = dgvUsers.GetCellDisplayRectangle(e.ColumnIndex,e.RowIndex, true);
-                    contextMenu.Show(dgvUsers, new Point(cellRectangle.Location.X + e.X, cellRectangle.Location.Y + e.Y));
-                }
+                var exportMenuItem = new MenuItem("Export to Excel", ExportItem_Clicked);
+                exportMenuItem.Tag = currentRowId;
+                contextMenu.MenuItems.Add(exportMenuItem);
+
+                var cellRectangle = dgvUsers.GetCellDisplayRectangle(e.ColumnIndex,e.RowIndex, true);
+                contextMenu.Show(dgvUsers, new Point(cellRectangle.Location.X + e.X, cellRectangle.Location.Y + e.Y));
             }
             catch (Exception ex)
             {
@@ -128,19 +147,19 @@ namespace SupplementMall
                 if (id == Globals.Id)
                     return;
 
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this user", "Confirmation  Message", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                var dialogResult = MessageBox.Show("Are you sure you want to delete this user", "Confirmation  Message", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes) 
+                    return;
+
+                if (DataBaseOperations.DeleteFromUsers(id))
                 {
-                    if (DataBaseOperations.DeleteFromUsers(id))
-                    {
-                        MessageBox.Show("User deleted successfuly", "Success");
+                    MessageBox.Show("User deleted successfuly", "Success");
                         
-                        FillGridView();
-                    }
-                    else
-                    {
-                        MessageBox.Show("couldn't Delete user\nSomething went wrong", "Error!");
-                    }
+                    FillGridView();
+                }
+                else
+                {
+                    MessageBox.Show("couldn't Delete user\nSomething went wrong", "Error!");
                 }
             }
             catch (Exception ex)
@@ -155,6 +174,9 @@ namespace SupplementMall
             {
                 var id = (int)((MenuItem)sender).Tag;
                 var frmUser = new FrmUser(id);
+                frmUser.WindowState = this.WindowState;
+                frmUser.Location = this.Location;
+                frmUser.Size = this.Size;
                 frmUser.Tag = this;
                 _needExitApplication = false;
                 frmUser.Show();
@@ -166,13 +188,13 @@ namespace SupplementMall
             }
         }
 
-        private void copyAlltoClipboard()
+        private void CopyAlltoClipboard()
         {
             try
             {
                 dgvUsers.SelectAll();
                 dgvUsers.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-                DataObject dataObj = dgvUsers.GetClipboardContent();
+                var dataObj = dgvUsers.GetClipboardContent();
                 if (dataObj != null)
                     Clipboard.SetDataObject(dataObj);
             }
@@ -186,7 +208,7 @@ namespace SupplementMall
         {
             try
             {
-                copyAlltoClipboard();
+                CopyAlltoClipboard();
                 Microsoft.Office.Interop.Excel.Application xlexcel;
                 Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
                 Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
@@ -195,7 +217,7 @@ namespace SupplementMall
                 xlexcel.Visible = true;
                 xlWorkBook = xlexcel.Workbooks.Add(misValue);
                 xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-                Microsoft.Office.Interop.Excel.Range CR = (Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Cells[1, 1];
+                var CR = (Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Cells[1, 1];
                 CR.Select();
                 xlWorkSheet.PasteSpecial(CR, System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing, true);
             }
@@ -210,6 +232,9 @@ namespace SupplementMall
             try
             {
                 var frmAdminPanel = new FrmAdminPanel();
+                frmAdminPanel.WindowState = this.WindowState;
+                frmAdminPanel.Location = this.Location;
+                frmAdminPanel.Size = this.Size;
                 frmAdminPanel.Show();
                 _needExitApplication = false;
                 this.Close();
@@ -222,26 +247,37 @@ namespace SupplementMall
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            base.OnFormClosing(e);
+            try
+            {
+                base.OnFormClosing(e);
 
-            if (!_needExitApplication)
-                return;
+                if (!_needExitApplication)
+                    return;
 
-            if (e.CloseReason == CloseReason.WindowsShutDown || e.CloseReason == CloseReason.ApplicationExitCall)
-                return;
+                if (e.CloseReason == CloseReason.WindowsShutDown || e.CloseReason == CloseReason.ApplicationExitCall)
+                    return;
 
-            DialogResult result = MessageBox.Show("Are you sure you want to exist the application", "Warning!", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-                Application.Exit();
-            else
-                e.Cancel = true;
+                var result = MessageBox.Show("Are you sure you want to exist the application", "Warning!", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                    Application.Exit();
+                else
+                    e.Cancel = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error!");
+            }
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             try
             {
-                FrmUser frmUser = new FrmUser(-1);
+                var frmUser = new FrmUser(-1);
+                frmUser.WindowState = this.WindowState;
+                frmUser.Location = this.Location;
+                frmUser.Size = this.Size;
                 frmUser.Tag = this;
                 _needExitApplication = false;
                 frmUser.Show();

@@ -32,10 +32,6 @@ namespace SupplementMall
         private void InitializeComponent()
         {
             this.dgvCustomers = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblSearch = new System.Windows.Forms.Label();
             this.lblAllowedPeriod = new System.Windows.Forms.Label();
             this.cmboSearch = new System.Windows.Forms.ComboBox();
@@ -52,6 +48,10 @@ namespace SupplementMall
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblNote = new System.Windows.Forms.Label();
             this.picWaitingAnimation = new System.Windows.Forms.PictureBox();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWaitingAnimation)).BeginInit();
             this.SuspendLayout();
@@ -72,61 +72,29 @@ namespace SupplementMall
             this.dgvCustomers.TabIndex = 7;
             this.dgvCustomers.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCustomers_CellMouseClick);
             // 
-            // ID
-            // 
-            this.ID.Frozen = true;
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // CustomerName
-            // 
-            this.CustomerName.Frozen = true;
-            this.CustomerName.HeaderText = "Name";
-            this.CustomerName.Name = "CustomerName";
-            this.CustomerName.ReadOnly = true;
-            this.CustomerName.Width = 150;
-            // 
-            // Phone
-            // 
-            this.Phone.Frozen = true;
-            this.Phone.HeaderText = "Phone";
-            this.Phone.Name = "Phone";
-            this.Phone.ReadOnly = true;
-            this.Phone.Width = 70;
-            // 
-            // Date
-            // 
-            this.Date.Frozen = true;
-            this.Date.HeaderText = "Date";
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            this.Date.Width = 160;
-            // 
             // lblSearch
             // 
             this.lblSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblSearch.AutoSize = true;
+            this.lblSearch.BackColor = System.Drawing.Color.Transparent;
             this.lblSearch.Font = new System.Drawing.Font("Tahoma", 8F);
             this.lblSearch.Location = new System.Drawing.Point(13, 55);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(50, 13);
             this.lblSearch.TabIndex = 2;
             this.lblSearch.Text = "Search : ";
-            this.lblSearch.BackColor = Color.Transparent;
             // 
             // lblAllowedPeriod
             // 
             this.lblAllowedPeriod.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblAllowedPeriod.AutoSize = true;
+            this.lblAllowedPeriod.BackColor = System.Drawing.Color.Transparent;
             this.lblAllowedPeriod.Font = new System.Drawing.Font("Tahoma", 8F);
             this.lblAllowedPeriod.Location = new System.Drawing.Point(13, 23);
             this.lblAllowedPeriod.Name = "lblAllowedPeriod";
             this.lblAllowedPeriod.Size = new System.Drawing.Size(181, 13);
             this.lblAllowedPeriod.TabIndex = 0;
             this.lblAllowedPeriod.Text = "Allow Customer to buy again after : ";
-            this.lblAllowedPeriod.BackColor = Color.Transparent;
             // 
             // cmboSearch
             // 
@@ -165,13 +133,13 @@ namespace SupplementMall
             // 
             this.lblValue.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblValue.AutoSize = true;
+            this.lblValue.BackColor = System.Drawing.Color.Transparent;
             this.lblValue.Font = new System.Drawing.Font("Tahoma", 8F);
             this.lblValue.Location = new System.Drawing.Point(172, 55);
             this.lblValue.Name = "lblValue";
             this.lblValue.Size = new System.Drawing.Size(43, 13);
             this.lblValue.TabIndex = 4;
             this.lblValue.Text = "Value : ";
-            this.lblValue.BackColor = Color.Transparent;
             // 
             // txtValue
             // 
@@ -206,6 +174,7 @@ namespace SupplementMall
             // 
             this.lblTo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTo.AutoSize = true;
+            this.lblTo.BackColor = System.Drawing.Color.Transparent;
             this.lblTo.Font = new System.Drawing.Font("Tahoma", 8F);
             this.lblTo.Location = new System.Drawing.Point(172, 82);
             this.lblTo.Name = "lblTo";
@@ -213,13 +182,11 @@ namespace SupplementMall
             this.lblTo.TabIndex = 6;
             this.lblTo.Text = "To : ";
             this.lblTo.Visible = false;
-            this.lblTo.BackColor = Color.Transparent;
             // 
             // btnGo
             // 
             this.btnGo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGo.Image = global::SupplementMall.Properties.Resources.btngo;
             this.btnGo.Location = new System.Drawing.Point(423, 48);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(70, 25);
@@ -231,7 +198,6 @@ namespace SupplementMall
             // 
             this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.Image = global::SupplementMall.Properties.Resources.btnback;
             this.btnBack.Location = new System.Drawing.Point(368, 507);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(125, 25);
@@ -243,6 +209,7 @@ namespace SupplementMall
             // 
             this.lblLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLogOut.AutoSize = true;
+            this.lblLogOut.BackColor = System.Drawing.Color.Transparent;
             this.lblLogOut.Location = new System.Drawing.Point(442, 9);
             this.lblLogOut.Name = "lblLogOut";
             this.lblLogOut.Size = new System.Drawing.Size(43, 13);
@@ -250,13 +217,11 @@ namespace SupplementMall
             this.lblLogOut.TabStop = true;
             this.lblLogOut.Text = "Log out";
             this.lblLogOut.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLogOut_LinkClicked);
-            this.lblLogOut.BackColor = Color.Transparent;
             // 
             // btnAddCustomer
             // 
             this.btnAddCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddCustomer.Image = global::SupplementMall.Properties.Resources.btnadd;
             this.btnAddCustomer.Location = new System.Drawing.Point(237, 507);
             this.btnAddCustomer.Name = "btnAddCustomer";
             this.btnAddCustomer.Size = new System.Drawing.Size(125, 25);
@@ -268,7 +233,6 @@ namespace SupplementMall
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Image = global::SupplementMall.Properties.Resources.btncancelsmall;
             this.btnCancel.Location = new System.Drawing.Point(423, 78);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 25);
@@ -280,23 +244,55 @@ namespace SupplementMall
             // 
             this.lblNote.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblNote.AutoSize = true;
+            this.lblNote.BackColor = System.Drawing.Color.Transparent;
             this.lblNote.Font = new System.Drawing.Font("Tahoma", 7F);
             this.lblNote.Location = new System.Drawing.Point(13, 463);
             this.lblNote.Name = "lblNote";
             this.lblNote.Size = new System.Drawing.Size(156, 12);
             this.lblNote.TabIndex = 6;
             this.lblNote.Text = "* Right click on a row for options";
-            this.lblNote.BackColor = Color.Transparent;
             // 
             // picWaitingAnimation
             // 
             this.picWaitingAnimation.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.picWaitingAnimation.BackColor = System.Drawing.Color.Transparent;
             this.picWaitingAnimation.Location = new System.Drawing.Point(12, 90);
             this.picWaitingAnimation.Name = "picWaitingAnimation";
             this.picWaitingAnimation.Size = new System.Drawing.Size(22, 22);
             this.picWaitingAnimation.TabIndex = 14;
             this.picWaitingAnimation.TabStop = false;
-            this.picWaitingAnimation.BackColor = Color.Transparent;
+            // 
+            // ID
+            // 
+            this.ID.Frozen = true;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.Frozen = true;
+            this.CustomerName.HeaderText = "Name";
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
+            this.CustomerName.Width = 150;
+            // 
+            // Phone
+            // 
+            this.Phone.Frozen = true;
+            this.Phone.HeaderText = "Phone";
+            this.Phone.Name = "Phone";
+            this.Phone.ReadOnly = true;
+            this.Phone.Width = 130;
+            // 
+            // Date
+            // 
+            this.Date.Frozen = true;
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            this.Date.Width = 180;
             // 
             // FrmCustomers
             // 
@@ -349,12 +345,12 @@ namespace SupplementMall
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.LinkLabel lblLogOut;
         private System.Windows.Forms.Button btnAddCustomer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblNote;
         private PictureBox picWaitingAnimation;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn CustomerName;
+        private DataGridViewTextBoxColumn Phone;
+        private DataGridViewTextBoxColumn Date;
     }
 }
