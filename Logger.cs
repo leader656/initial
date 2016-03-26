@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +15,8 @@ namespace SupplementMall
         private static readonly string LogFilePath =
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar + "exceptions.log";
 
-        public static void LogException(Exception ex, string errorMessage)
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public  static void LogException(Exception ex, string errorMessage)
         {
             try
             {

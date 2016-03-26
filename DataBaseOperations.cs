@@ -12,15 +12,9 @@ namespace SupplementMall
 {
     internal class DataBaseOperations
     {
-        #if DEBUG
-        private static readonly SqlCeConnection Connection =
-            new SqlCeConnection("Data Source=" + Application.StartupPath + Path.DirectorySeparatorChar + "Database.sdf");
-        #else
-
         private static readonly SqlCeConnection Connection =
             new SqlCeConnection("Data Source=" + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
                                 Path.DirectorySeparatorChar + "DataBase" + Path.DirectorySeparatorChar + "Database.sdf");
-        #endif
 
         #region Customers
         public static bool InsertIntoCustomers(string name, string phone, List<byte[]> lstFingerPrints)
