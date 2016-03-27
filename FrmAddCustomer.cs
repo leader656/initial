@@ -54,6 +54,7 @@ namespace SupplementMall
             }
         }
 
+        [HandleProcessCorruptedStateExceptions]
         private void btnStartDevice_Click(object sender, EventArgs e)
         {
             try
@@ -68,6 +69,7 @@ namespace SupplementMall
                 timerFinger.Enabled = false;
                 btnNext.Enabled = false;
 
+                fpengine.CloseDevice();
                 if (fpengine.OpenDevice(0, 0, 0) == 1)
                 {
                     if (fpengine.LinkDevice() == 1)
@@ -92,6 +94,7 @@ namespace SupplementMall
             }
         }
 
+        [HandleProcessCorruptedStateExceptions]
         private void timerFinger_Tick(object sender, EventArgs e)
         {
             try
@@ -257,6 +260,7 @@ namespace SupplementMall
             }
         }
 
+        [HandleProcessCorruptedStateExceptions]
         private Task<object[]> CheckingFingerPrints()
         {
             try

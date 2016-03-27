@@ -18,3 +18,23 @@ C:\Users\Saada\Desktop\New Folder\obj\Debug\SupplementMall.FrmUsers.resources
 C:\Users\Saada\Desktop\New Folder\obj\Debug\Supplement Mall.exe
 C:\Users\Saada\Desktop\New Folder\obj\Debug\Supplement Mall.pdb
 C:\Users\Saada\Desktop\New Folder\obj\Debug\Supplement Mall.csprojResolveAssemblyReference.cache
+C:\Users\Saada\Desktop\supplements project\New Folder\bin\Debug\Supplement Mall.exe.config
+C:\Users\Saada\Desktop\supplements project\New Folder\obj\Debug\Supplement Mall.exe
+C:\Users\Saada\Desktop\supplements project\New Folder\obj\Debug\Supplement Mall.pdb
+C:\Users\Saada\Desktop\supplements project\New Folder\bin\Debug\Database.sdf
+C:\Users\Saada\Desktop\supplements project\New Folder\bin\Debug\Resources\logo.png
+C:\Users\Saada\Desktop\supplements project\New Folder\bin\Debug\Supplement Mall.exe
+C:\Users\Saada\Desktop\supplements project\New Folder\bin\Debug\Supplement Mall.pdb
+C:\Users\Saada\Desktop\supplements project\New Folder\bin\Debug\Microsoft.Office.Tools.Excel.v4.0.Utilities.dll
+C:\Users\Saada\Desktop\supplements project\New Folder\bin\Debug\Microsoft.Office.Tools.Excel.v4.0.Utilities.xml
+C:\Users\Saada\Desktop\supplements project\New Folder\obj\Debug\Supplement Mall.csprojResolveAssemblyReference.cache
+C:\Users\Saada\Desktop\supplements project\New Folder\obj\Debug\SupplementMall.FrmAddCustomer.resources
+C:\Users\Saada\Desktop\supplements project\New Folder\obj\Debug\SupplementMall.FrmAdminPanel.resources
+C:\Users\Saada\Desktop\supplements project\New Folder\obj\Debug\SupplementMall.FrmCustomer.resources
+C:\Users\Saada\Desktop\supplements project\New Folder\obj\Debug\SupplementMall.FrmAddCustomerInfo.resources
+C:\Users\Saada\Desktop\supplements project\New Folder\obj\Debug\SupplementMall.FrmCustomers.resources
+C:\Users\Saada\Desktop\supplements project\New Folder\obj\Debug\SupplementMall.FrmLogin.resources
+C:\Users\Saada\Desktop\supplements project\New Folder\obj\Debug\SupplementMall.FrmUser.resources
+C:\Users\Saada\Desktop\supplements project\New Folder\obj\Debug\SupplementMall.FrmUsers.resources
+C:\Users\Saada\Desktop\supplements project\New Folder\obj\Debug\SupplementMall.Properties.Resources.resources
+C:\Users\Saada\Desktop\supplements project\New Folder\obj\Debug\Supplement Mall.csproj.GenerateResource.Cache

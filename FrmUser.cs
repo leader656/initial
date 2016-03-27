@@ -120,7 +120,7 @@ namespace SupplementMall
                     return;
                 }
 
-                if(!email.Contains("@") || email.Contains(".com"))
+                if(!email.Contains("@") || !email.Contains(".com"))
                 {
                     MessageBox.Show("Please enter a valid email");
                     return;

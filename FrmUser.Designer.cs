@@ -200,7 +200,7 @@ namespace SupplementMall
             this.btnCancel.Size = new System.Drawing.Size(126, 28);
             this.btnCancel.TabIndex = 12;
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
